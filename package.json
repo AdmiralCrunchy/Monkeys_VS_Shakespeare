@@ -12,6 +12,7 @@
   "description": "## Description",
   "version": "1.0.0",
   "main": "server.js",
+  "start": "node server.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AdmiralCrunchy/Monkeys_VS_Shakespeare.git"
