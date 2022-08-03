@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.3"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "monkeys_vs_shakespeare",
+  "description": "## Description",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdmiralCrunchy/Monkeys_VS_Shakespeare.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdmiralCrunchy/Monkeys_VS_Shakespeare/issues"
+  },
+  "homepage": "https://github.com/AdmiralCrunchy/Monkeys_VS_Shakespeare#readme"
+}
