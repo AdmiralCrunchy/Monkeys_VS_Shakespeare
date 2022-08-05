@@ -5,16 +5,7 @@ const sequelize = require("./config/connection");
 const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
-//SOCKETIO STUFF
-const socketio = require('socket.io');
-const path = require('path');
-const http = require('http');
 
-const server = http.createServer(app);
-const io = socketio(server);
-
-const formatMessage = require('./z-chat/utils/messages');
-const { userJoin, getCurrentUser, userLeave, getRoomUsers } = require('./z-chat/utils/users');
 
 // Sets up the Express App
 // =============================================================
@@ -48,62 +39,6 @@ app.set("view engine", "handlebars");
 
 app.use("/", allRoutes);
 
-//SOCKET IO
-
-// Chat bot
-
-const botName = 'MonkeyBot'
-
-// Run when client connects
-io.on('connection', socket => {
-
-  socket.on('joinRoom', ({ username, room }) => {
-
-    const user = userJoin(socket.id, username, room)
-
-    socket.join(user.room);
-
-    // Welcome message
-    socket.emit('message', formatMessage(botName, `Welcome to Monkeys vs Shakespere ${user.username}`))
-
-    //Broadcase to the chosen ROOM when a USER connects
-    socket.broadcast.to(user.room).emit('message', formatMessage(botName, `${user.username} has joined ${user.room}`));
-  })
-
-  // SEND USER ROOOM INFO
-  // io.to(user.room).emit('roomUsers', {
-  //     room: user.room,
-  //     users: getRoomUsers(user.room)
-  // })
-
-  socket.on('chatMessage', (msg) => {
-
-    const user = getCurrentUser(socket.id)
-    console.log(user)
-
-
-    io.to(user.room).emit('message', formatMessage(user.username, msg));
-
-    console.log(msg)
-
-  });
-
-  socket.on('disconnect', () => {
-
-    const user = userLeave(socket.id);
-    console.log(user)
-
-    if (user) {
-      io.to(user.room).emit('message', formatMessage(botName, `${user.username} has logged off`)
-      );
-      //SEND ROOM USER INFO
-      // io.to(user.room).emit('roomUsers', {
-      //     room: user.room,
-      //     users: getRoomUsers(user.room)
-      // })
-    }
-  })
-})
 
 sequelize.sync({ force: false }).then(function () {
   app.listen(PORT, function () {
