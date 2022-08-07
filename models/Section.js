@@ -23,10 +23,10 @@ Section.init(
             type: DataTypes.TEXT,
             allowNull: false,
         },
-        time_allowed{
+        time_allowed: {
             type: DateTypes.INTEGER,
             allowNull: false,
-        }
+        },
     },
     { 
         sequelize,
