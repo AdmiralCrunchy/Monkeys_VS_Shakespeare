@@ -187,3 +187,14 @@ const sections = [
 		time_allowed: 15,
 	},
 ];
+
+const seedMe = async () => {
+	await sequelize.sync({ force: true });
+	await books.bulkCreate(books, { individualHooks: true });
+	await sections.bulkCreate(sections, { individualHooks: true });
+	const bookObj = await Book.bulkCreate(books);
+	const sectionObj = await Section.bulkCreate(sections);
+	console.log('seeding complete');
+	process.exit(0);
+};
+seedMe();
