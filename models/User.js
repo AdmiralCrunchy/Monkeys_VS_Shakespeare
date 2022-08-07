@@ -39,6 +39,10 @@ User.init({
     // favorite_Book: {
     //     type: DataTypes.INTEGER,
     //     allowNull: true,
+    // // },
+    // games_won: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: true,
     // }
 }, {
     sequelize,
