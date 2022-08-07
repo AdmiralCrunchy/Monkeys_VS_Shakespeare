@@ -6,7 +6,12 @@ const sequelize = require('../config/connection');
 class User extends Model { }
 
 User.init({
-    // add properites here, ex:
+    // id: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: false,
+    //     autoIncrement: true,
+    //     primaryKey: true,
+    // },
     username: {
         type: DataTypes.STRING,
         allowNull: false
@@ -22,9 +27,33 @@ User.init({
         validate: {
             len: [8]
         }
-    }
+    },
+    // words_Typed: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: true,
+    // },
+    // user_WPM: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: true,
+    // },
+    // favorite_Book: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: true,
+    //     references:{
+    //          model: 'book',
+    //          key: 'id',
+    //      },
+    // },
+    // games_won: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: true,
+    // }
 }, {
     sequelize,
+    // timestamps: false,
+    // freezeTableName: true,
+    // underscored: true,
+    // modelName: 'user',
     hooks: {
         beforeCreate: userObj => {
             userObj.password = bcrypt.hashSync(userObj.password, 4);

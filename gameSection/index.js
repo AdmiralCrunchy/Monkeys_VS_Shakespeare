@@ -1,12 +1,22 @@
-const words = "This is a test set of words for the player to type out here, this is not the final set of words that we will be using in our game. There seems to be the need to have many more words that I initially speculated that we would need perhaps this was simply an oversight but maybe I'm just dumb and don't really know how to code things properly. This is a test set of words for the player to type out here, this is not the final set of words that we will be using in our game. There seems to be the need to have many more words that I initially speculated that we would need perhaps this was simply an oversight but maybe I'm just dumb and don't really know how to code things properly. This is a test set of words for the player to type out here, this is not the final set of words that we will be using in our game. There seems to be the need to have many more words that I initially speculated that we would need perhaps this was simply an oversight but maybe I'm just dumb and don't really know how to code things properly. This is a test set of words for the player to type out here, this is not the final set of words that we will be using in our game. There seems to be the need to have many more words that I initially speculated that we would need perhaps this was simply an oversight but maybe I'm just dumb and don't really know how to code things properly. This is a test set of words for the player to type out here, this is not the final set of words that we will be using in our game. There seems to be the need to have many more words that I initially speculated that we would need perhaps this was simply an oversight but maybe I'm just dumb and don't really know how to code things properly. This is a test set of words for the player to type out here, this is not the final set of words that we will be using in our game. There seems to be the need to have many more words that I initially speculated that we would need perhaps this was simply an oversight but maybe I'm just dumb and don't really know how to code things properly. Well this seems like the end of the road. It was nice riding with you partner I must type even more if I am able to.".split(' ');
+const words = "This is a test set of words for the player to type out here, this is not the final set of words that we will be using in our game. There seems to be the need to have many more words that I initially speculated that we would need perhaps this was simply an oversight but maybe I'm just dumb and don't really know how to code things properly. There seems to be the need to have many more words that I initially speculated that we would need perhaps this was simply an oversight but maybe I'm just dumb and don't really know how to code things properly. This is a test set of words for the player to type out here, this is not the final set of words that we will be using in our game. There seems to be the need to have many more words that I initially speculated that we would need perhaps this was simply an oversight but maybe I'm just dumb and don't really know how to code things properly. This is a test set of words for the player to type out here, this is not the final set of words that we will be using in our game. There seems to be the need to have many more words that I initially speculated that we would need perhaps this was simply an oversight but maybe I'm just dumb and don't really know how to code things properly. This is a test set of words for the player to type out here, this is not the final set of words that we will be using in our game. There seems to be the need to have many more worWell this seems like the end of the road. It was nice riding with you partner I must type even more if I am able to.".split(' ');
 const wordsCount = words.length;
-const combatTime = 30 * 1000;
+const combatTime = 45 * 1000;
 window.timer = null;
 window.combatStart = null;
 let madeError = null;
+let finishedEarly = null;
+let globalTime = null;
+let combatTimeLeft = null;
+
+//Keyboard Functionality
 
 function addClass(el,name){
-
+    if(!el)
+    {
+        finishedEarly = true;
+        attackOver();
+        return;
+    }
     el.className += ' '+name;
 }
 
@@ -25,44 +35,74 @@ function formatWord(word) {
 
 function initializeGame() {
 
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 50; i++) {
         const text = document.getElementById('wording');
         text.innerHTML += formatWord(randomWords());
     }
     addClass(document.querySelector('.words'), 'current');
     addClass(document.querySelector('.letter'), 'current');
     window.timer = null;
+    madeError = null;
+    combatTimeLeft = null;
+    const table = document.getElementById('typingBoard');
+    const cursor = document.getElementById('cursor');
+
+    cursor.style.top = table.getBoundingClientRect().top + 2 + 'px' ;
+    cursor.style.left = table.getBoundingClientRect().left + 2 + 'px';
+
+
 }
 
 function attackOver(){
     clearInterval(window.timer);
     addClass(document.getElementById('typingBoard'), 'over');
-    document.getElementById('info').innerHTML = `WPM: ${getWPM()}` 
+    getScore(); 
 }
 
-function getWPM(){
+function getScore(){
+    let wpmScore = null;
+    let totalDone = null;
+    let accScore = null;
+    let totalIncorrectLetters = null;
+    let totalCorrectLetters = null;
+    let totalLetters = null;
+
     const words = [...document.querySelectorAll('.words')];
-    console.log('Words:',words);
     const lastTypedWord = document.querySelector('.words.current');
-    console.log('Last Typed Word:',lastTypedWord);
     const LastTypedWordIndex = words.indexOf(lastTypedWord);
-    console.log('Last Typed Word Index',LastTypedWordIndex);
     const typedWords = words.slice(0, LastTypedWordIndex);
-    console.log('typed Words',typedWords);
     const correctWords = typedWords.filter(words => {
         const letters = [...words.children];
-        console.log('Letters:', letters)
         const incorrectLetters = letters.filter(letter => letter.className.includes('incorrect'))
         const correctLetters = letters.filter(letter => letter.className.includes('correct'))
-        console.log("The incorrect letters",incorrectLetters.length);
-        console.log("Correct Letters:", correctLetters.length)
-        console.log("letter length:", letters.length)
-
-
+        if(incorrectLetters.length>0){
+            totalIncorrectLetters += (incorrectLetters.length+1);
+        }
+        if(correctLetters.length>0){
+            totalCorrectLetters += (correctLetters.length+1);
+        }
+        if(letters.length>0){
+            totalLetters +=(letters.length+1);
+        }
+        
         return incorrectLetters.length === 0 && correctLetters.length === letters.length
     })
-    console.log('Correct Words',correctWords);
-    return correctWords.length / combatTime * 60000;
+
+    if(finishedEarly)
+    {
+        wpmScore = Math.floor(correctWords.length / ((combatTime/1000) - combatTimeLeft) * 60); 
+    }else{
+        wpmScore = Math.floor(correctWords.length / combatTime * 60000);
+    }
+
+    console.log(correctWords.length);
+    console.log(words.length);
+
+    accScore = Math.floor(100*(((totalCorrectLetters) - ((totalIncorrectLetters) + madeError)) / (totalLetters)))
+
+    totalDone = Math.floor(100*((correctWords.length) / (words.length)))
+
+    document.getElementById('info').innerHTML = `WPM: ${wpmScore} <br> Accuracy: ${accScore}% <br> Percentage Finished: ${totalDone}%`
 }
 
 document.getElementById('typingBoard').addEventListener('keyup', event=>{
@@ -75,11 +115,10 @@ document.getElementById('typingBoard').addEventListener('keyup', event=>{
     const isFirstLetter = currentLetter === currentWord.firstChild;
     const isExtra = document.querySelector('.letter.incorrect.extra');
     const isBackSpace = key === 'Backspace';
-
+    
     if (document.querySelector('#typingBoard.over')){
         return;
     }
-    console.log({key, expected});
 
     if(!window.timer && isLetter)
     {
@@ -91,14 +130,14 @@ document.getElementById('typingBoard').addEventListener('keyup', event=>{
             const msPassed = currentTime - window.combatStart;
             const sPassed = Math.round(msPassed/1000);
             const sLeft = (combatTime/1000) - sPassed;
+            combatTimeLeft = sLeft;
             document.getElementById('info').innerHTML = sLeft + '';
             if(sLeft <=0){
                 attackOver()
                 return;
             }
         }, 1000)
-        
-    }
+    }    
 
     if(isLetter) {
         if(currentLetter){
@@ -159,7 +198,7 @@ document.getElementById('typingBoard').addEventListener('keyup', event=>{
 
     }
 
-    if(currentWord.getBoundingClientRect().top > 230) {
+    if(currentWord.getBoundingClientRect().top > 390) {
         const words = document.getElementById('wording')
         const margin = parseInt(words.style.marginTop || '0px');
         words.style.marginTop = (margin - 35)+ 'px';
@@ -168,8 +207,13 @@ document.getElementById('typingBoard').addEventListener('keyup', event=>{
     const nextLetter = document.querySelector('.letter.current');
     const nextWord = document.querySelector('.words.current');
     const cursor = document.getElementById('cursor');
-    cursor.style.top = (nextLetter || nextWord).getBoundingClientRect().top+[nextWord ? '0' : '2'] +'px';
-    cursor.style.left = (nextLetter || nextWord).getBoundingClientRect()[nextLetter ? 'left' : 'right'] +'px';
+    
+
+    cursor.style.top = ((nextLetter || nextWord).getBoundingClientRect().top+[nextWord ? '2' : '2']) +'px' ;
+    cursor.style.left = ((nextLetter || nextWord).getBoundingClientRect()[nextLetter ? 'left' : 'right']) +'px';
+
 })
+
+
 
 initializeGame();
