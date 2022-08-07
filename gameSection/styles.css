@@ -139,9 +139,6 @@ img{
     animation: blink .5s infinite;
 }
 
-#typingBoard:focus #cursor{
-    /* display: block; */
-}
 
 .letter.correct{
     color: var(--textPrimary)
