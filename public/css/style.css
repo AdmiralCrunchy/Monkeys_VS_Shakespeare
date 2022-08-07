@@ -209,3 +209,7 @@ a {
 .navbar {
 	background-color: var(--bg-second);
 }
+
+#modalColor {
+	background-color: var(--bg-second);
+}
