@@ -5,6 +5,8 @@ const sequelize = require("./config/connection");
 const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
+
+
 // Sets up the Express App
 // =============================================================
 const app = express();
@@ -36,6 +38,7 @@ app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
 
 app.use("/", allRoutes);
+
 
 sequelize.sync({ force: false }).then(function () {
   app.listen(PORT, function () {

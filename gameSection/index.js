@@ -3,6 +3,7 @@ const wordsCount = words.length;
 const combatTime = 30 * 1000;
 window.timer = null;
 window.combatStart = null;
+let madeError = null;
 
 function addClass(el,name){
 
@@ -36,6 +37,32 @@ function initializeGame() {
 function attackOver(){
     clearInterval(window.timer);
     addClass(document.getElementById('typingBoard'), 'over');
+    document.getElementById('info').innerHTML = `WPM: ${getWPM()}` 
+}
+
+function getWPM(){
+    const words = [...document.querySelectorAll('.words')];
+    console.log('Words:',words);
+    const lastTypedWord = document.querySelector('.words.current');
+    console.log('Last Typed Word:',lastTypedWord);
+    const LastTypedWordIndex = words.indexOf(lastTypedWord);
+    console.log('Last Typed Word Index',LastTypedWordIndex);
+    const typedWords = words.slice(0, LastTypedWordIndex);
+    console.log('typed Words',typedWords);
+    const correctWords = typedWords.filter(words => {
+        const letters = [...words.children];
+        console.log('Letters:', letters)
+        const incorrectLetters = letters.filter(letter => letter.className.includes('incorrect'))
+        const correctLetters = letters.filter(letter => letter.className.includes('correct'))
+        console.log("The incorrect letters",incorrectLetters.length);
+        console.log("Correct Letters:", correctLetters.length)
+        console.log("letter length:", letters.length)
+
+
+        return incorrectLetters.length === 0 && correctLetters.length === letters.length
+    })
+    console.log('Correct Words',correctWords);
+    return correctWords.length / combatTime * 60000;
 }
 
 document.getElementById('typingBoard').addEventListener('keyup', event=>{
@@ -46,6 +73,7 @@ document.getElementById('typingBoard').addEventListener('keyup', event=>{
     const isLetter = key.length === 1 && key !== ' ';
     const isSpaced = key === ' ';
     const isFirstLetter = currentLetter === currentWord.firstChild;
+    const isExtra = document.querySelector('.letter.incorrect.extra');
     const isBackSpace = key === 'Backspace';
 
     if (document.querySelector('#typingBoard.over')){
@@ -78,12 +106,16 @@ document.getElementById('typingBoard').addEventListener('keyup', event=>{
             removeClass(currentLetter, 'current');
             if (currentLetter.nextSibling){
                 addClass(currentLetter.nextSibling, 'current');
-            } 
+            }
+            if(currentLetter.className === 'letter  incorrect'){
+                madeError++
+            }
         } else {
             const incorrectLetter = document.createElement('span');
             incorrectLetter.innerHTML = key;
             incorrectLetter.className ='letter incorrect extra';
             currentWord.appendChild(incorrectLetter);
+            madeError++;
         }
     }
     if(isSpaced){
@@ -110,6 +142,7 @@ document.getElementById('typingBoard').addEventListener('keyup', event=>{
             removeClass(currentWord.previousSibling.lastChild, 'incorrect');
         }
         if(currentLetter && !isFirstLetter) {
+
             removeClass(currentLetter, 'current');
             addClass(currentLetter.previousSibling, 'current');
             removeClass(currentLetter.previousSibling, 'incorrect');
@@ -119,14 +152,15 @@ document.getElementById('typingBoard').addEventListener('keyup', event=>{
             addClass(currentWord.lastChild, 'current');
             removeClass(currentWord.lastChild, 'correct');
             removeClass(currentWord.lastChild, 'incorrect');
-
         }
+        if(isExtra){
+            currentWord.removeChild(isExtra);
+        }
+
     }
 
     if(currentWord.getBoundingClientRect().top > 230) {
-        console.log("we are running the scrolling option")
         const words = document.getElementById('wording')
-        console.log(words.style.marginTop)
         const margin = parseInt(words.style.marginTop || '0px');
         words.style.marginTop = (margin - 35)+ 'px';
     }

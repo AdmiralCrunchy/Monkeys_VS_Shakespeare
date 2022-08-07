@@ -10,7 +10,7 @@ const { username, room } = Qs.parse(location.search, {
 
 
 
-const socket = io();
+const socket = io('https://monkeys-vs-shake-io.herokuapp.com/');
 
 // JOin Chat room
 socket.emit('joinRoom', { username, room })

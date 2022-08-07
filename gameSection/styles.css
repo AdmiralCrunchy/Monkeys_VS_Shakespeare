@@ -127,7 +127,8 @@ h1 svg{
 }
 
 #typingBoard.over #words{
-    opacity: .5
+    opacity: .25;
+    filter: blur(0);
 }
 
 #typingBoard.over #cursor {
