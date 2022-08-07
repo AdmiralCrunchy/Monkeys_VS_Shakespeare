@@ -6,6 +6,10 @@
 	--light-color: #e6e9ff;
 	--success-color: #5cb85c;
 	--error-color: #d9534f;
+	--bg-main: #323232;
+	--bg-second: #777;
+	--text-main: ;
+	--text-second: ;
 }
 
 * {
@@ -17,8 +21,7 @@
 body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 16px;
-	background: var(--light-color);
-	margin: 20px;
+	background: var(--bg-main);
 }
 
 ul {
@@ -191,4 +194,18 @@ a {
 
 #loginForm {
     padding: 1.5rem;
+	background-color: var(--bg-second);
+}
+
+#siteInfo {
+    padding: 1.5rem;
+	background-color: var(--bg-second);
+}
+
+#welcome {
+	margin-top: 1.5rem;
+}
+
+.navbar {
+	background-color: var(--bg-second);
 }
