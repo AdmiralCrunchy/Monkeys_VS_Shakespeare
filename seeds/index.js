@@ -10,6 +10,10 @@ const books = [
 		name: 'Romeo & Juliet',
 		description: `The Romeo and Juliet play is set in Renaissance Verona in Italy. In the Elizabethan imagination that would have presented a picture of heat, quick tempers and violence.`,
 	},
+	{
+		name: 'Macbeth',
+		description: `In Macbeth, the murder of a king by one of his subjects is seen as unnatural and the images of the play reflect this theme, with disruptions of nature, like storms – and events such as where the horses turn on their grooms and bite them. In Macbeth Shakespeare explores what it is to be a man. Lady Macbeth accuses Macbeth of being unmanly because of his hesitation in killing Duncan, but Macbeth says that it’s unmanly for a man to kill his king. Shakespeare plays with that paradox. Duncan is a good king and a good man, and he is surrounded by images of light. Macbeth and Lady Macbeth turn their surroundings into a picture of hell, blanketed in darkness. Those images of light and dark interact throughout the play.`,
+	},
 ];
 const sections = [
 	{
@@ -120,27 +124,17 @@ const sections = [
 	},
 	{
 		book_id: 2,
-		contents: `Verona was coming to life: people poured out of the houses and filled the streets while market traders set up their stalls in the grand piazza. It was a good patch, an excellent place to catch the business of those who lived and worked in the rich houses that lined Verona’s main square.
-
-        The Capulet mansion was one of the biggest – filled with servants and humming with activity. It was an hour till breakfast and while the cooks sweated over the fires in the kitchen, conjuring mouthwatering aromas of baked breads and hams, the servingmen killed time as best they could.
-        
-        Two of them – hot, bored and restless – stepped out into the bustle of the piazza and swaggered about among the bright colours, the animal smells and the din of traders’ voices, hoping to find some action.`,
+		contents: `Verona was coming to life: people poured out of the houses and filled the streets while market traders set up their stalls in the grand piazza. It was a good patch, an excellent place to catch the business of those who lived and worked in the rich houses that lined Verona’s main square. The Capulet mansion was one of the biggest – filled with servants and humming with activity. It was an hour till breakfast and while the cooks sweated over the fires in the kitchen, conjuring mouthwatering aromas of baked breads and hams, the servingmen killed time as best they could. Two of them – hot, bored and restless – stepped out into the bustle of the piazza and swaggered about among the bright colours, the animal smells and the din of traders’ voices, hoping to find some action.`,
 		time_allowed: 15,
 	},
 	{
 		book_id: 2,
-		contents: `Just as Montague broke loose from his wife’s grasp and was rushing to meet Capulet, who had answered his challenge by coming out to the piazza, still in his nightgown, there was the furious brassy sound of trumpets – dozens of them. Every citizen knew what that fanfare meant. Even Tybalt, although at an advantage in his fight with Benvolio, lowered his sword and turned towards the palace that dominated the piazza with its huge columns and vast porch. The Prince himself, accompanied by scores of his courtiers and officers, was hurrying down the stairs.
-
-        The fanfare died away and silence spread across the piazza. Everyone watched as the Prince strode to the fountain and stepped up on to the wall. He looked around at his subjects. His face was solemn. His stern gaze fell on Montague and Capulet who stood side by side, their swords still drawn.`,
+		contents: `Just as Montague broke loose from his wife’s grasp and was rushing to meet Capulet, who had answered his challenge by coming out to the piazza, still in his nightgown, there was the furious brassy sound of trumpets – dozens of them. Every citizen knew what that fanfare meant. Even Tybalt, although at an advantage in his fight with Benvolio, lowered his sword and turned towards the palace that dominated the piazza with its huge columns and vast porch. The Prince himself, accompanied by scores of his courtiers and officers, was hurrying down the stairs. The fanfare died away and silence spread across the piazza. Everyone watched as the Prince strode to the fountain and stepped up on to the wall. He looked around at his subjects. His face was solemn. His stern gaze fell on Montague and Capulet who stood side by side, their swords still drawn.`,
 		time_allowed: 15,
 	},
 	{
 		book_id: 2,
-		contents: `Friar Lawrence was up early. The clouds in the eastern sky were streaked with light as the night scurried out of the way of the advancing day. He looked up from time to time. He wanted to fill his basket with a mixture of poisonous and healing herbs before the sun came up to dry the dew.
-
-        He loved nature. He often thought about the soil – about the way that it encompassed the whole of life. It was a grave that took all life into itself when it died but it was also a mother, from which all new life sprang.
-        
-        Plants fascinated him. He felt that every single plant had great value: even those we think are vile have some power and grace. Every living thing was special although nothing was so good that it couldn’t be dangerous if it was abused.`,
+		contents: `Friar Lawrence was up early. The clouds in the eastern sky were streaked with light as the night scurried out of the way of the advancing day. He looked up from time to time. He wanted to fill his basket with a mixture of poisonous and healing herbs before the sun came up to dry the dew. He loved nature. He often thought about the soil – about the way that it encompassed the whole of life. It was a grave that took all life into itself when it died but it was also a mother, from which all new life sprang. Plants fascinated him. He felt that every single plant had great value: even those we think are vile have some power and grace. Every living thing was special although nothing was so good that it couldn’t be dangerous if it was abused.`,
 		time_allowed: 15,
 	},
 	{
@@ -181,9 +175,82 @@ const sections = [
 	},
 	{
 		book_id: 2,
-		contents: `‘He only brought flowers for his lady’s grave,’ said the page. ‘He told the Prince what had happened’. The Prince called for a torch and began reading the letter. Everyone waited for him to finish. At last he folded it. ‘This letter confirms everything that everyone has told me,’ he said. ‘Capulet. Montague. Can you see what punishment you’ve been given for your hatred? And because I’ve turned a blind eye to your quarrels I’ve also lost some of my own family. Everyone’s been punished.’
-
-        Capulet was aware of Montague weeping beside him. He thought of Montague’s wife dying from grief at the banishment of her son: he remembered the pain of Tybalt’s death, the way Juliet had shown her reluctance to marry Paris. He looked at the pitiful corpses on the ground in front of him. He turned to Montague. ‘Oh brother Montague, give me your hand,’ he said. ‘This is long overdue. Forgive me.’`,
+		contents: `‘He only brought flowers for his lady’s grave,’ said the page. ‘He told the Prince what had happened’. The Prince called for a torch and began reading the letter. Everyone waited for him to finish. At last he folded it. ‘This letter confirms everything that everyone has told me,’ he said. ‘Capulet. Montague. Can you see what punishment you’ve been given for your hatred? And because I’ve turned a blind eye to your quarrels I’ve also lost some of my own family. Everyone’s been punished.’ Capulet was aware of Montague weeping beside him. He thought of Montague’s wife dying from grief at the banishment of her son: he remembered the pain of Tybalt’s death, the way Juliet had shown her reluctance to marry Paris. He looked at the pitiful corpses on the ground in front of him. He turned to Montague. ‘Oh brother Montague, give me your hand,’ he said. ‘This is long overdue. Forgive me.’`,
+		time_allowed: 15,
+	},
+	{
+		book_id: 3,
+		contents: `Duncan, King of Scotland, was conferring with his sons, Malcolm and Donalbain, at a fortress near Forres. Matters could not be worse. The rebels, led by the northern Thane, Macdonwald, had made an alliance with the Norwegian king and the two forces were preparing to roll across Scotland like a tidal wave. Two sentries brought a limping, bleeding soldier to the King. The man clutched his torn side, resisting an overwhelming desire to pass into unconsciousness. It was clear that he had something important to tell the King. ‘What bloody man is this?’ said Duncan. ‘I can see he’s just come from the battlefield so he’ll be able to give us the latest news.’ ‘Ah!’ exclaimed Malcolm. ‘This is the sergeant who struggled so valiantly to save me from captivity. Hello, brave friend. Tell the King how things stand.’`,
+		time_allowed: 15,
+	},
+	{
+		book_id: 3,
+		contents: `‘From Fife, great King,’ said Ross. ‘Where Norwegian banners have been flying freely. Norway himself, with the help of that most disloyal of traitors, the Thane of Cawdor, began a terrible assault. Until Macbeth, absolutely fearless, confronted him head on and, matching him point for point, blow for blow, ground him down and, to conclude -’ Ross grinned. ‘The victory fell on us.’ Duncan spun round and beamed at his council. ‘Great happiness!’ he said and clapped his hands. ‘So now,’ said Ross, ‘Sweno’s in disarray. ‘And we didn’t even allow him to bury his men until he had paid us ten thousand dollars.’`,
+		time_allowed: 15,
+	},
+	{
+		book_id: 3,
+		contents: `Where hast thou been, sister?
+		Killing swine.
+		Sister, where thou?
+		A sailor’s wife had chestnuts in her lap,
+		And munched, and munched, and munched:
+		Give me,’ quoth I:
+		Aroint thee, witch!’ the rump-fed ronyon cries.
+		Her husband’s to Aleppo gone, master o’ the Tiger: But in a sieve I’ll thither sail,
+		And, like a rat without a tail, I’ll do, I’ll do and I’ll do!
+		I’ll give thee a wind.
+		Thou’rt kind.
+		And I another.
+		I myself have all the other; And the very ports they blow, All the quarters that they know In the shipman’s card.
+		I’ll drain him dry as hay:
+		Sleep shall neither night nor day
+		Hang upon his pent-house lid;
+		He shall live a man forbid.
+		Weary se’nnights nine times nine
+		Shall he dwindle, peak and pine:
+		Though his bark cannot be lost,
+		Yet it shall be tempest-tost.
+		Look what I have.
+		Show me, show me!
+		Here I have a pilot’s thumb,
+		Wracked as homeward he did come.`,
+		time_allowed: 15,
+	},
+	{
+		book_id: 3,
+		contents: `‘Stop!’ said Macbeth. ‘Is that all? Tell me more. I know I’m Thane of Glamis as a result of Sinel’s death. But Cawdor? The Thane of Cawdor is alive and well. And as for being king! It’s no more believable than being Thane of Cawdor. Tell me where you get this strange information. Or why you stop us on this blasted heath with such a prophetic greeting. Speak up, I command you!’ They had gone. ‘These are bubbles of the earth,’ said Banquo. ‘Where have they gone?’ ‘Vanished into the air. And what seemed solid melted like breath in the wind. I wish they had stayed.’ ‘Were we seeing things?’ said Banquo. ‘Have we gone mad?’ Macbeth gazed at his friend for a moment then he laughed. ‘Your children will be kings.’ He doubled over and roared. Banquo began laughing too.`,
+		time_allowed: 15,
+	},
+	{
+		book_id: 3,
+		contents: `Macbeth was immersed in confusion. What did it mean? He tried to apply reason to it. The weird women had told him two truths as innocent prologues to the imperial theme. This couldn’t be bad. Nor could it be good. If it was bad why did it promise such success for him, beginning with an indisputable fact? He was Thane of Cawdor after all. But if it was good, why did it make him think about doing something so unnatural that it made his hair stand up on end and his heart pound furiously – knocking against his ribs? His worst moments of fear in battle were nothing to the horrors of his imagination now. The thought that kept coming to him was so outrageous, so unsettling, that he was losing all sense of reality.`,
+		time_allowed: 15,
+	},
+	{
+		book_id: 3,
+		contents: `They met me in the day of success. They have supernatural knowledge. When I tried to question them further they vanished into the air. While I was still standing there, wrapped in wonder, some messengers came from the King, calling me Thane of Cawdor: the title which the weird sisters had only just saluted me with! And they had also referred me to the future with ‘Hail, king that shalt be!’ I had to tell you this my dearest partner of greatness so that you wouldn’t miss the joy of knowing what has been promised you. Think about it and farewell. Lady Macbeth clutched the letter to her heart. He was Glamis already and also Cawdor now! And she knew he would be… what he had been promised!`,
+		time_allowed: 15,
+	},
+	{
+		book_id: 3,
+		contents: `And yet… She didn’t think he could pull it off. He was too full of the milk of human kindness to do… what was necessary. He wanted greatness, he wasn’t without ambition, but he had no ruthlessness in him. Whatever he wanted to achieve always had to be done honourably. No, he would never betray anyone. And yet he still wanted something he shouldn’t have: what he wanted screamed out: ‘If you want me you must do such and such!’ But he feared to act on it. She couldn’t wait for him to get home so that she could pour her influence into his ear, persuade him away from all the excuses that kept him from wearing the… the round golden shiny headpiece that fate and the supernatural seem to have crowned him with already.`,
+		time_allowed: 15,
+	},
+	{
+		book_id: 3,
+		contents: `‘Even the raven – the bird of death – that croaks the fatal entrance of Duncan under my battlements is hoarse,’ she said aloud. She closed her eyes and raised her arms to the sky. ‘Come, you spirits that tend on mortal thoughts. Take all my femininity away and fill me from the crown to the toe top full of direst cruelty. Make thick my blood, stop me from feeling pity so that no natural feelings can get in the way.’ She put her hands on her breasts. ‘Come to my woman’s breasts, you spirits of evil, and suck gall from me where there should be milk. Come thick night and shroud me in the dunnest smoke of hell, so that my sharp knife won’t see the wound it makes, nor that the light of heaven peep through the blanket of the dark to cry, ‘stop! stop!’‘`,
+		time_allowed: 15,
+	},
+	{
+		book_id: 3,
+		contents: `Some time later she lay, propped on her elbow, stroking his hair and staring into his eyes.‘Your face, my Thane, is like a book where one may read strange things.’ She kissed him. ‘To deceive everyone look like everyone else. Be welcoming: show welcome in your eyes, your hand, your tongue. Look like the innocent flower but be the serpent under it. We must provide for… him that’s coming. And you must leave tonight’s great business to me. Business that will shape the rest of our lives.’ Macbeth said nothing. She kissed him again then looked at him with a question in her eyes. He sat up and lifted his clothes from the floor. ‘We’ll talk about it later,’ he said.`,
+		time_allowed: 15,
+	},
+	{
+		book_id: 3,
+		contents: `He remembered the way Banquo had reproached the witches when they’d first put the name of king on him. And he had insisted that they speak to him. And when they did they looked respectful and hailed Banquo as the father of a line of kings. On his own head they had placed a fruitless crown and put a barren scepter in his hand! To be wrenched away by a hand not of his own family – none of his sons succeeding him. So it was for Banquo’s descendants that he had corrupted his soul. He had murdered the gracious Duncan for them! Stuck thorns in his peace of mind just for them. And given his precious soul to the Devil to turn Banquo’s sons into kings. All that for the seed of Banquo! Rather than that he would defy Fate and fight it to the death.
+		The attendant returned with two rough-looking men.`,
 		time_allowed: 15,
 	},
 ];
@@ -192,8 +259,8 @@ const seedMe = async () => {
 	await sequelize.sync({ force: true });
 	await books.bulkCreate(books, { individualHooks: true });
 	await sections.bulkCreate(sections, { individualHooks: true });
-	const bookObj = await Book.bulkCreate(books);
-	const sectionObj = await Section.bulkCreate(sections);
+	// const bookObj = await Book.bulkCreate(books);
+	// const sectionObj = await Section.bulkCreate(sections);
 	console.log('seeding complete');
 	process.exit(0);
 };
