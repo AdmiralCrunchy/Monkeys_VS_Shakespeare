@@ -18,10 +18,18 @@ Book.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        description: {
+            type: DataTypes.TEXT,
+            allowNull: true,
+        },
         section_Id: {
             type: DataTypes.INTEGER,    
             allowNull: false,
-        }
+            references: {
+                model: 'section',
+                key: 'id',
+            },
+        },
     },
     { 
         sequelize,

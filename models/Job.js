@@ -12,7 +12,24 @@ Job.init(
         name: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        job_Level: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        health_Points:{
+            type: Datatypes. INTEGER,
+            allowNull: false,
+        },
+        attack_damage: {
+            type: Datatypes. INTEGER,
+            allowNull: false,
+        },
+        special_Points: {
+            type: Datatypes. INTEGER,
+            allowNull: false,
         }
+
     },
     { 
         sequelize,

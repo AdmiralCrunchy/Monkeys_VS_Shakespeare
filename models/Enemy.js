@@ -34,9 +34,25 @@ Enemy.init(
             type: DataTypes.DECIMAL,
             allowNull: false,
         },
+        damage_High: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        damage_Low: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
         book_Id: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            references: {
+                model: 'book',
+                key: 'id',
+            },
+        },
+        is_Alive: {
+            type: DataTypes.BOOLEAN,
+            default: true,
         }
 
     },

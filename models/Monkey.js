@@ -11,6 +11,14 @@ Monkey.init(
             autoIncrement: true,
             unique: true
         },
+        owner:{
+            type: DataTypes.INTEGER,
+            allowNull: true,
+            references: {
+                model: 'user',
+                key: 'id',
+            },
+        },
         words_Typed: {
             type: DataTypes.INTEGER,
             allowNull: true,
@@ -22,6 +30,10 @@ Monkey.init(
         monkey_Job: {
             type: DataTypes.INTEGER,
             allowNull: true,
+            references: {
+                model: 'job',
+                key: 'id',
+            },
         },
     },
     { 
