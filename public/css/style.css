@@ -188,3 +188,7 @@ a {
 		display: none;
 	}
 }
+
+#loginForm {
+    padding: 1.5rem;
+}
