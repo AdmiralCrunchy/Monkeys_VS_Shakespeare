@@ -10,6 +10,10 @@ const books = [
 		name: 'Romeo & Juliet',
 		description: `The Romeo and Juliet play is set in Renaissance Verona in Italy. In the Elizabethan imagination that would have presented a picture of heat, quick tempers and violence.`,
 	},
+	{
+		name: 'Macbeth',
+		description: `In Macbeth, the murder of a king by one of his subjects is seen as unnatural and the images of the play reflect this theme, with disruptions of nature, like storms – and events such as where the horses turn on their grooms and bite them. In Macbeth Shakespeare explores what it is to be a man. Lady Macbeth accuses Macbeth of being unmanly because of his hesitation in killing Duncan, but Macbeth says that it’s unmanly for a man to kill his king. Shakespeare plays with that paradox. Duncan is a good king and a good man, and he is surrounded by images of light. Macbeth and Lady Macbeth turn their surroundings into a picture of hell, blanketed in darkness. Those images of light and dark interact throughout the play.`,
+	},
 ];
 const sections = [
 	{
@@ -184,6 +188,56 @@ const sections = [
 		contents: `‘He only brought flowers for his lady’s grave,’ said the page. ‘He told the Prince what had happened’. The Prince called for a torch and began reading the letter. Everyone waited for him to finish. At last he folded it. ‘This letter confirms everything that everyone has told me,’ he said. ‘Capulet. Montague. Can you see what punishment you’ve been given for your hatred? And because I’ve turned a blind eye to your quarrels I’ve also lost some of my own family. Everyone’s been punished.’
 
         Capulet was aware of Montague weeping beside him. He thought of Montague’s wife dying from grief at the banishment of her son: he remembered the pain of Tybalt’s death, the way Juliet had shown her reluctance to marry Paris. He looked at the pitiful corpses on the ground in front of him. He turned to Montague. ‘Oh brother Montague, give me your hand,’ he said. ‘This is long overdue. Forgive me.’`,
+		time_allowed: 15,
+	},
+	{
+		book_id: 3,
+		contents: ``,
+		time_allowed: 15,
+	},
+	{
+		book_id: 3,
+		contents: ``,
+		time_allowed: 15,
+	},
+	{
+		book_id: 3,
+		contents: ``,
+		time_allowed: 15,
+	},
+	{
+		book_id: 3,
+		contents: ``,
+		time_allowed: 15,
+	},
+	{
+		book_id: 3,
+		contents: ``,
+		time_allowed: 15,
+	},
+	{
+		book_id: 3,
+		contents: ``,
+		time_allowed: 15,
+	},
+	{
+		book_id: 3,
+		contents: ``,
+		time_allowed: 15,
+	},
+	{
+		book_id: 3,
+		contents: ``,
+		time_allowed: 15,
+	},
+	{
+		book_id: 3,
+		contents: ``,
+		time_allowed: 15,
+	},
+	{
+		book_id: 3,
+		contents: ``,
 		time_allowed: 15,
 	},
 ];
