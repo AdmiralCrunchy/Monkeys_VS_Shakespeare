@@ -1,18 +1,32 @@
 [
-    
-    {
-        "name": "A Midsummer Night's Dream",
-        "description": " ",
-        "author_Id": 1
-    },
-    {
-        "name": "The Picture of Dorian Gray",
-        "description": " ",
-        "author_Id": 2
-    },
-    {
-        "name": "Frankenstien",
-        "description": " ",
-        "author_Id": 3
-    }
+	{
+		"name": "A Midsummer Night's Dream",
+		"description": " ",
+		"author_Id": 1
+	},
+	{
+		"name": "The Picture of Dorian Gray",
+		"description": " ",
+		"author_Id": 2
+	},
+	{
+		"name": "Frankenstien",
+		"description": " ",
+		"author_Id": 3
+	},
+	{
+		"name": "Hamlet",
+		"description": "The ghost of the King of Denmark tells his son Hamlet to avenge his murder by killing the new king, Hamlet's uncle. Hamlet feigns madness, contemplates life and death, and seeks revenge. His uncle, fearing for his life, also devises plots to kill Hamlet. The play ends with a duel, during which the King, Queen, Hamlet's opponent and Hamlet himself are all killed.",
+		"author_Id": 1
+	},
+	{
+		"name": "Romeo & Juliet",
+		"description": "The Romeo and Juliet play is set in Renaissance Verona in Italy. In the Elizabethan imagination that would have presented a picture of heat, quick tempers and violence.",
+		"author_Id": 1
+	},
+	{
+		"name": "Macbeth",
+		"description": "In Macbeth, the murder of a king by one of his subjects is seen as unnatural and the images of the play reflect this theme, with disruptions of nature, like storms and events such as where the horses turn on their grooms and bite them. In Macbeth Shakespeare explores what it is to be a man. Lady Macbeth accuses Macbeth of being unmanly because of his hesitation in killing Duncan, but Macbeth says that it’s unmanly for a man to kill his king. Shakespeare plays with that paradox. Duncan is a good king and a good man, and he is surrounded by images of light. Macbeth and Lady Macbeth turn their surroundings into a picture of hell, blanketed in darkness. Those images of light and dark interact throughout the play.",
+		"author_Id": 1
+	}
 ]
