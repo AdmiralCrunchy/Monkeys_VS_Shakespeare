@@ -28,6 +28,14 @@ User.init({
             len: [8]
         }
     },
+    // monkeys_owned{
+    //     type: DataTypes.INTEGER,
+    //     allowNull:true,
+    //     references: {
+    //          model: monkey,
+    //          key: id
+    //      }
+    // }
     // words_Typed: {
     //     type: DataTypes.INTEGER,
     //     allowNull: true,
@@ -44,7 +52,7 @@ User.init({
     //          key: 'id',
     //      },
     // },
-    // games_won: {
+    // games_Won: {
     //     type: DataTypes.INTEGER,
     //     allowNull: true,
     // }
