@@ -78,7 +78,7 @@ img{
 }
 
 #combatlog{
-    height: 35px;
+    height: 40px;
     background-color: bisque;
     color: black;
 }
@@ -104,6 +104,10 @@ img{
     inset:0;
     text-align: center;
     padding-top: 40px;
+}
+
+#typingBoard:focus #cursor{
+    display: block;
 }
 
 #typingBoard:focus #focus-error{
@@ -134,8 +138,8 @@ img{
     height: 1.4rem;
     background-color: var(--primaryColor);
     position: fixed;
-    top: 0px;
-    left: 0px;
+    top: 5px;
+    left: 5px;
     animation: blink .5s infinite;
 }
 

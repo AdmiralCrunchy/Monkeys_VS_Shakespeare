@@ -23,7 +23,7 @@ Section.init(
 			type: DataTypes.TEXT,
 			allowNull: false,
 		},
-		time_allowed: {
+		time_Allowed: {
 			type: DateTypes.INTEGER,
 			allowNull: false,
 		},

@@ -10,13 +10,7 @@ Enemy.init(
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
-            validator: {
-                isUnique: true,
-            }
-        },
-        combat_Id: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
+            isUnique: true,
         },
         name: {
             type: DataTypes.STRING,
@@ -53,8 +47,11 @@ Enemy.init(
         is_Alive: {
             type: DataTypes.BOOLEAN,
             default: true,
-        }
-
+        },
+        is_Taunted: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true,
+        },
     },
     { 
         sequelize,
