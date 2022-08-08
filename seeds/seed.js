@@ -53,21 +53,17 @@ const sections = [
 	},
 	{
 		book_id: 1,
-		contents: `Speak the speech, I pray you, as I pronounced it to you, trippingly on the tongue: but if you mouth it, as many of your players do, I had as lief the town-crier spoke my lines. Nor do not saw the air too much with your hand, thus, but use all gently; for in the very torrent, tempest, and, as I may say,the whirlwind of passion, you must acquire and beget
-        a temperance that may give it smoothness. O, it offends me to the soul to hear a robustious periwig-pated fellow tear a passion to tatters, to very rags, to split the ears of the groundlings, who for the most part are capable of nothing but
-        inexplicable dumbshows and noise: I would have such a fellow whipped for o’erdoing Termagant; it out-herods Herod: pray you, avoid it.`,
+		contents: `Speak the speech, I pray you, as I pronounced it to you, trippingly on the tongue: but if you mouth it, as many of your players do, I had as lief the town-crier spoke my lines. Nor do not saw the air too much with your hand, thus, but use all gently; for in the very torrent, tempest, and, as I may say,the whirlwind of passion, you must acquire and beget a temperance that may give it smoothness. O, it offends me to the soul to hear a robustious periwig-pated fellow tear a passion to tatters, to very rags, to split the ears of the groundlings, who for the most part are capable of nothing but inexplicable dumbshows and noise: I would have such a fellow whipped for o’erdoing Termagant; it out-herods Herod: pray you, avoid it.`,
 		time_allowed: 15,
 	},
 	{
 		book_id: 1,
-		contents: `Be not too tame neither, but let your own discretion be your tutor: suit the action to the word, the word to the action; with this special o’erstep not the modesty of nature: for any thing so overdone is from the purpose of playing, whose end, both at the first and now, was and is, to hold, as ’twere, the mirror up to nature; to show virtue her own feature, scorn her own image, and the very age and body of the time his form and pressure. Now this overdone, or come tardy off, though it make the unskilful laugh, cannot but make the judicious grieve; the censure of the which one must in your allowance o’erweigh a whole theatre of others. O, there be players that I have seen play, and heard others praise and that highly, not to speak it profanely, that, neither having the accent of Christians nor the gait of Christian, pagan, nor man, have so strutted and bellowed that I have thought some of nature’s journeymen had made men and not made them
-        well, they imitated humanity so abominably.`,
+		contents: `Be not too tame neither, but let your own discretion be your tutor: suit the action to the word, the word to the action; with this special o’erstep not the modesty of nature: for any thing so overdone is from the purpose of playing, whose end, both at the first and now, was and is, to hold, as ’twere, the mirror up to nature; to show virtue her own feature, scorn her own image, and the very age and body of the time his form and pressure. Now this overdone, or come tardy off, though it make the unskilful laugh, cannot but make the judicious grieve; the censure of the which one must in your allowance o’erweigh a whole theatre of others. O, there be players that I have seen play, and heard others praise and that highly, not to speak it profanely, that, neither having the accent of Christians nor the gait of Christian, pagan, nor man, have so strutted and bellowed that I have thought some of nature’s journeymen had made men and not made them well, they imitated humanity so abominably.`,
 		time_allowed: 15,
 	},
 	{
 		book_id: 1,
-		contents: `Nay, do not think I flatter. For what advancement may I hope from thee. That no revenue hast but thy good spirits. To feed and clothe thee? Why should the poor be flatter’d? No, let the candied tongue lick absurd pomp. And crook the pregnant hinges of the knee. Where thrift may follow fawning. Dost thou hear? Since my dear soul was mistress of her choice. And could of men distinguish, her election. Hath seal’d thee for herself; for thou hast been. As one, in suffering all, that suffers nothing. A man that fortune’s buffets and rewards. Hast ta’en with equal thanks: and blest are those. Whose blood and judgment are so well commingled. That they are not a pipe for fortune’s finger. To sound what stop she please. Give me that man. That is not passion’s slave, and I will wear him. In my heart’s core, ay, in my heart of heart,
-        As I do thee.–Something too much of this.`,
+		contents: `Nay, do not think I flatter. For what advancement may I hope from thee. That no revenue hast but thy good spirits. To feed and clothe thee? Why should the poor be flatter’d? No, let the candied tongue lick absurd pomp. And crook the pregnant hinges of the knee. Where thrift may follow fawning. Dost thou hear? Since my dear soul was mistress of her choice. And could of men distinguish, her election. Hath seal’d thee for herself; for thou hast been. As one, in suffering all, that suffers nothing. A man that fortune’s buffets and rewards. Hast ta’en with equal thanks: and blest are those. Whose blood and judgment are so well commingled. That they are not a pipe for fortune’s finger. To sound what stop she please. Give me that man. That is not passion’s slave, and I will wear him. In my heart’s core, ay, in my heart of heart, As I do thee.–Something too much of this.`,
 		time_allowed: 15,
 	},
 	{
@@ -87,8 +83,7 @@ const sections = [
 	},
 	{
 		book_id: 2,
-		contents: `‘Because she could see you didn’t mean it.’ Friar Lawrence was thinking. Marrying the two young people from the feuding families would be a disaster and he couldn’t possible agree to it. Or could he? It may be the best way of bringing the families together. It could just be the salvation of Verona. It took him a second to decide. ‘Come on then, you young rascal,’ he said. ‘Come with me. This is one thing I can help you with. This could be the answer: the thing to turn your households’ hatred into love.’ ‘Well let’s hurry then,’ said Romeo. ‘I can’t wait.’
-        ‘Slow down,’ said the Friar as Romeo started running. ‘You’ll stumble if you try to go too fast.’`,
+		contents: `‘Because she could see you didn’t mean it.’ Friar Lawrence was thinking. Marrying the two young people from the feuding families would be a disaster and he couldn’t possible agree to it. Or could he? It may be the best way of bringing the families together. It could just be the salvation of Verona. It took him a second to decide. ‘Come on then, you young rascal,’ he said. ‘Come with me. This is one thing I can help you with. This could be the answer: the thing to turn your households’ hatred into love.’ ‘Well let’s hurry then,’ said Romeo. ‘I can’t wait.’ ‘Slow down,’ said the Friar as Romeo started running. ‘You’ll stumble if you try to go too fast.’`,
 		time_allowed: 15,
 	},
 	{
