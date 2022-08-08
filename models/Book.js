@@ -22,14 +22,15 @@ Book.init(
             type: DataTypes.TEXT,
             allowNull: true,
         },
-        section_Id: {
-            type: DataTypes.INTEGER,    
-            allowNull: false,
-            references: {
-                model: 'section',
+        author_Id: {
+           type: DataTypes.INTEGER,
+           allowNull: false,
+           references: {
+                model: 'enemy',
                 key: 'id',
-            },
+           } 
         },
+
     },
     { 
         sequelize,

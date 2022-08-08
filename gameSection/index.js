@@ -1,14 +1,33 @@
-const words = "This is a test set of words for the player to type out here, this is not the final set of words that we will be using in our game. There seems to be the need to have many more words that I initially speculated that we would need perhaps this was simply an oversight but maybe I'm just dumb and don't really know how to code things properly. There seems to be the need to have many more words that I initially speculated that we would need perhaps this was simply an oversight but maybe I'm just dumb and don't really know how to code things properly. This is a test set of words for the player to type out here, this is not the final set of words that we will be using in our game. There seems to be the need to have many more words that I initially speculated that we would need perhaps this was simply an oversight but maybe I'm just dumb and don't really know how to code things properly. This is a test set of words for the player to type out here, this is not the final set of words that we will be using in our game. There seems to be the need to have many more words that I initially speculated that we would need perhaps this was simply an oversight but maybe I'm just dumb and don't really know how to code things properly. This is a test set of words for the player to type out here, this is not the final set of words that we will be using in our game. There seems to be the need to have many more worWell this seems like the end of the road. It was nice riding with you partner I must type even more if I am able to.".split(' ');
-const wordsCount = words.length;
-const combatTime = 45 * 1000;
+//Combat Vairables
+const playerName = "Bobo"
+window.globalTimer = null;
+let actionName = null;
+let actionTarget = null;
+let menuRan = null;
+
+const combatants = {
+    monkeys: ['Jeff', 'Dipper', 'Bobo', 'Angela'],
+    enemies: ['enemy1', 'enemy2', 'enemy3']
+};
+
+//Keyboard Variables
+
+const wordPool = `Verona was coming to life: people poured out of the houses and filled the streets while market traders set up their stalls in the grand piazza. It was a good patch, an excellent place to catch the business of those who lived and worked in the rich houses that lined Verona’s main square. The Capulet mansion was one of the biggest – filled with servants and humming with activity. It was an hour till breakfast and while the cooks sweated over the fires in the kitchen, conjuring mouthwatering aromas of baked breads and hams, the servingmen killed time as best they could. Two of them – hot, bored and restless – stepped out into the bustle of the piazza and swaggered about among the bright colours, the animal smells and the din of traders’ voices, hoping to find some action.`.split(' ');
+const wordsCount = wordPool.length;
+let combatTime = 30 * 1000;
 window.timer = null;
 window.combatStart = null;
 let madeError = null;
 let finishedEarly = null;
-let globalTime = null;
 let combatTimeLeft = null;
 
-//Keyboard Functionality
+//-----------------------------------------------------//
+//-                                                   -//
+//-                                                   -//
+//-               Keyboard section                    -//
+//-                                                   -//
+//-                                                   -//
+//-----------------------------------------------------//
 
 function addClass(el,name){
     if(!el)
@@ -26,37 +45,68 @@ function removeClass(el,name){
 
 function randomWords() {
     const randomIndex = Math.ceil(Math.random() * wordsCount-1);
-    return words[randomIndex];
+    return wordPool[randomIndex];
 }
 
 function formatWord(word) {
     return `<div class="words"><span class="letter">${word.split('').join(`</span><span class="letter">`)}</span></div>`;
 }
 
-function initializeGame() {
-
-    for (let i = 0; i < 50; i++) {
-        const text = document.getElementById('wording');
-        text.innerHTML += formatWord(randomWords());
-    }
-    addClass(document.querySelector('.words'), 'current');
-    addClass(document.querySelector('.letter'), 'current');
+function initializeKeyboard(mode) {
     window.timer = null;
     madeError = null;
     combatTimeLeft = null;
-    const table = document.getElementById('typingBoard');
+
+    let init = document.getElementById('typingBoard');
+    init.innerHTML = `<div id="wording"></div>
+    <div id="cursor"></div>
+    <div id="focus-error">Click here to get back into the action!</div>`
+    finishedEarly = null;
+
     const cursor = document.getElementById('cursor');
-
-    cursor.style.top = table.getBoundingClientRect().top + 2 + 'px' ;
-    cursor.style.left = table.getBoundingClientRect().left + 2 + 'px';
+    const board = document.getElementById('typingBoard');
 
 
+    switch(mode){
+        case 'attack':
+            for(let i = 0; i <= wordsCount-1; i++)
+            {
+                const v = i;
+                const text = document.getElementById('wording');
+                text.innerHTML += formatWord(wordPool[v])
+            }
+            break;
+        case 'defend':
+            for (let i = 0; i < 100; i++) {
+                const text = document.getElementById('wording');
+                text.innerHTML += formatWord(randomWords());
+            }
+            combatTime = 60000;
+            break;
+        case 'heal':
+            for (let i = 0; i < 15; i++) {
+                const text = document.getElementById('wording');
+                text.innerHTML += formatWord(randomWords());
+            }
+            combatTime = 15000;
+            break;
+        case 'special':
+            break;
+    }
+
+    addClass(document.querySelector('.words'), 'current');
+    addClass(document.querySelector('.letter'), 'current');
+
+    cursor.style.top = board.getBoundingClientRect().top+2+'px' ;
+    cursor.style.left = board.getBoundingClientRect().left+'px';
+   
 }
 
 function attackOver(){
     clearInterval(window.timer);
     addClass(document.getElementById('typingBoard'), 'over');
-    getScore(); 
+    getScore();
+    combatMenu();
 }
 
 function getScore(){
@@ -95,14 +145,18 @@ function getScore(){
         wpmScore = Math.floor(correctWords.length / combatTime * 60000);
     }
 
-    console.log(correctWords.length);
-    console.log(words.length);
-
     accScore = Math.floor(100*(((totalCorrectLetters) - ((totalIncorrectLetters) + madeError)) / (totalLetters)))
+    if(accScore < 0)
+    {
+        accScore = 0;
+    }
 
-    totalDone = Math.floor(100*((correctWords.length) / (words.length)))
+    totalDone = Math.floor(100*((correctWords.length+1) / (words.length)))
 
-    document.getElementById('info').innerHTML = `WPM: ${wpmScore} <br> Accuracy: ${accScore}% <br> Percentage Finished: ${totalDone}%`
+    document.getElementById('combatLog').innerHTML = `${playerName} ${actionName}ed ${actionTarget} <br> STATS WPM: ${wpmScore} Accuracy: ${accScore}% Percentage Finished: ${totalDone}%`
+
+    removeKeyboard();
+    actionLand(wpmScore, accScore, totalDone);
 }
 
 document.getElementById('typingBoard').addEventListener('keyup', event=>{
@@ -114,8 +168,10 @@ document.getElementById('typingBoard').addEventListener('keyup', event=>{
     const isSpaced = key === ' ';
     const isFirstLetter = currentLetter === currentWord.firstChild;
     const isExtra = document.querySelector('.letter.incorrect.extra');
+    const isExtra2 = document.querySelector('.letter.extra');
     const isBackSpace = key === 'Backspace';
-    
+    const isFirstWord = currentWord === wording.firstChild;
+
     if (document.querySelector('#typingBoard.over')){
         return;
     }
@@ -173,12 +229,17 @@ document.getElementById('typingBoard').addEventListener('keyup', event=>{
     }
     if(isBackSpace) {
         if(currentLetter && isFirstLetter) {
+            if(isFirstWord)
+            {
+                return
+            }
             removeClass(currentWord, 'current');
             addClass(currentWord.previousSibling, 'current');
             removeClass(currentLetter, 'current');
             addClass(currentWord.previousSibling.lastChild, 'current');
-            removeClass(currentWord.previousSibling.lastChild, 'correct');
             removeClass(currentWord.previousSibling.lastChild, 'incorrect');
+            removeClass(currentWord.previousSibling.lastChild, 'correct');
+
         }
         if(currentLetter && !isFirstLetter) {
 
@@ -189,16 +250,17 @@ document.getElementById('typingBoard').addEventListener('keyup', event=>{
         }
         if(!currentLetter) {
             addClass(currentWord.lastChild, 'current');
-            removeClass(currentWord.lastChild, 'correct');
             removeClass(currentWord.lastChild, 'incorrect');
+            removeClass(currentWord.lastChild, 'correct');
+
         }
-        if(isExtra){
+        if(isExtra || isExtra2){
             currentWord.removeChild(isExtra);
         }
-
+        
     }
 
-    if(currentWord.getBoundingClientRect().top > 390) {
+    if(currentWord.getBoundingClientRect().top > 395) {
         const words = document.getElementById('wording')
         const margin = parseInt(words.style.marginTop || '0px');
         words.style.marginTop = (margin - 35)+ 'px';
@@ -207,13 +269,259 @@ document.getElementById('typingBoard').addEventListener('keyup', event=>{
     const nextLetter = document.querySelector('.letter.current');
     const nextWord = document.querySelector('.words.current');
     const cursor = document.getElementById('cursor');
-    
 
-    cursor.style.top = ((nextLetter || nextWord).getBoundingClientRect().top+[nextWord ? '2' : '2']) +'px' ;
+    cursor.style.top = ((nextLetter || nextWord).getBoundingClientRect().top+[nextWord ? '0' : '2']) +'px' ;
     cursor.style.left = ((nextLetter || nextWord).getBoundingClientRect()[nextLetter ? 'left' : 'right']) +'px';
 
 })
 
+function removeKeyboard() {
+    let keyboard = document.getElementById('typingBoard')
+    keyboard.innerHTML = null;
+}
 
 
-initializeGame();
+//-----------------------------------------------------//
+//-                                                   -//
+//-                                                   -//
+//-                 Combat section                    -//
+//-                                                   -//
+//-                                                   -//
+//-----------------------------------------------------//
+
+
+function gameClock() {
+    window.globalTimer = setInterval(() =>{
+        window.globalTimer++;
+    }, 1000)
+}
+
+function setupAllies(){
+
+}
+
+function createEnemies(){
+
+}
+
+function populateViewport(){
+
+}
+
+function combatMenu(){
+    console.log("menu run");
+
+    let menu = document.getElementById('typingBoard');
+    menu.innerHTML = `<button id="attackButton">ATTACK</button><button id="defendButton">DEFEND</button><button id="healButton">HEAL</button><button id="specialButton">SPECIAL</button>`;
+    
+        document.getElementById('attackButton').addEventListener('click', event=>{
+            actionName = 'attack';
+            clearButtons();
+            setupAttack();
+            console.log("it ran")
+        })
+        
+        document.getElementById('defendButton').addEventListener('click', event=>{
+            actionName = 'defend';
+            clearButtons();
+            setupDefend();
+        })
+        
+        document.getElementById('healButton').addEventListener('click', event=>{
+            actionName = 'heal';
+            clearButtons();
+            setupHeal();
+        })
+        
+        document.getElementById('specialButton').addEventListener('click', event=>{
+            actionName = 'special';
+            clearButtons();
+            setupSpecial();
+        })
+}
+
+function initializeCombat(){
+    gameClock();
+    setupAllies();
+    createEnemies();
+    populateViewport();
+    combatMenu();
+}
+
+function clearLog(){
+    document.getElementById('combatLog').innerHTML = ' ';
+}
+
+function clearButtons(){
+    let e = document.querySelector('button');
+    e.parentElement.removeChild;
+    let menu = document.getElementById('typingBoard');
+    menu.innerHTML = " ";
+}
+
+function setupAttack(){
+    //pick enemy
+    let log = document.getElementById(`combatLog`)
+    log.innerHTML = "Who are you attacking?"
+
+    for(let i = 0; i < combatants.enemies.length; i++ )
+    {
+        const x = i;
+        let menu = document.getElementById('typingBoard');
+        menu.innerHTML += makeButton(combatants.enemies[x]);
+        createEventListen(combatants.enemies[x]);
+    }
+
+    backButton();
+}
+function setupDefend(){
+    //pick ally or self
+    player = 'tank';
+    
+    document.getElementById(`combatLog`).innerHTML = "Who will you defend?"
+
+    if(player == 'tank')
+    {
+        
+        for(let i = 0; i < combatants.monkeys.length; i++ )
+        {
+            const x = i;
+            let menu = document.getElementById('typingBoard');
+            menu.innerHTML += makeButton(combatants.monkeys[x]);
+            createEventListen(combatants.monkeys[x]);
+        }
+
+        backButton()
+    }
+}
+function setupHeal(){
+    //pick ally or self
+    
+    player = 'healer';
+    if(player == 'healer')
+    {
+        document.getElementById(`combatLog`).innerHTML = "Who will you heal?"
+
+        for(let i = 0; i < combatants.monkeys.length; i++ )
+        {
+            const x = i;
+            let menu = document.getElementById('typingBoard');
+            menu.innerHTML += makeButton(combatants.monkeys[x]);
+            createEventListen(combatants.monkeys[x]);
+        }
+
+        backButton()
+    }
+    else{
+        
+        document.getElementById('combatLog').innerHTML = "Casting a healing Spell!";
+
+        initializeKeyboard(actionName);
+    }  
+    
+}
+
+function createEventListen(name){
+    console.log("create event:",name)
+    document.getElementById(`${name}Button`).addEventListener('click', event =>{
+        console.log("You have clicked", name, "Button")
+        actionTarget = name;
+        clearButtons();
+        initializeKeyboard(actionName);
+    })
+}
+
+function enemyAttack(){
+    
+}
+
+function actionLand(wpm, acc, total){
+
+    switch (actionName) {
+        case 'attack':
+            
+            break;
+        case 'defend':
+            
+            break;
+        case 'heal':
+            
+            break;
+        case 'buff':
+            
+            break;
+        case 'debuff':
+            
+            break;
+    
+        default:
+            break;
+    }
+
+    actionName = null;
+    combatMenu()
+}
+
+function makeButton(name){
+    return `<button id='${name}Button'>${name}</button>`
+}
+
+
+function setupSpecial(){
+    
+    let menu = document.getElementById('typingBoard');
+    menu.innerHTML += makeButton('buff');
+    menu.innerHTML += makeButton('debuff')
+    document.getElementById(`buffButton`).addEventListener('click', event =>{
+        clearButtons();
+        setupBuff();
+    })
+    document.getElementById(`debuffButton`).addEventListener('click', event =>{
+        clearButtons();
+        setupDebuff();
+    })
+    backButton();
+}
+
+function setupDebuff(){
+    document.getElementById(`combatLog`).innerHTML = "Who will you debuff?"
+
+    for(let i = 0; i < combatants.enemies.length; i++ )
+    {
+        const x = i;
+        let menu = document.getElementById('typingBoard');
+        menu.innerHTML += makeButton(combatants.enemies[x]);
+        createEventListen(combatants.enemies[x]);
+    }
+    backButton()
+}
+
+function setupBuff(){
+    //pick ally, self or enemy
+        document.getElementById(`combatLog`).innerHTML = "Who will you buff?"
+        for(let i = 0; i < combatants.monkeys.length; i++ )
+        {
+            const x = i;
+            console.log(x)
+            let menu = document.getElementById('typingBoard');
+            menu.innerHTML += makeButton(combatants.monkeys[x]);
+            createEventListen(combatants.monkeys[x]);
+        }
+        backButton()
+    }
+
+function backButton(){
+    let menu = document.getElementById('typingBoard');
+    menu.innerHTML += '<button id="back">BACK</button>'
+
+    let name = `back`;
+    document.getElementById(`${name}`).addEventListener('click', event=>{
+        clearButtons();
+        combatMenu();
+        clearLog();
+    })
+}
+
+initializeCombat();
+
+
