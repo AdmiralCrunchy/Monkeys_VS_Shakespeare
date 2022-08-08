@@ -23,17 +23,12 @@ const sections = [
 	},
 	{
 		book_id: 1,
-		contents: `It certainly stirs the imagination,’ said Horatio. At the height of Rome’s might, just before the mighty Julius Caesar was assassinated, graves opened and the dead walked the streets muttering and wailing. Stars of flaming fire came as disasters from the sun, and the moon, which influences Neptune’s watery empire, was eclipsed. Similar sightings, like warnings from heaven or prologues of an ill omen about to happen, have been witnessed here, by our own countrymen. He saw the ghost coming slowly towards them. But look! he said, the ghost comes again. I’ll approach it even though it might sweep me aside.
-        The ghost walked past them without altering its pace.`,
+		contents: `It certainly stirs the imagination,’ said Horatio. At the height of Rome’s might, just before the mighty Julius Caesar was assassinated, graves opened and the dead walked the streets muttering and wailing. Stars of flaming fire came as disasters from the sun, and the moon, which influences Neptune’s watery empire, was eclipsed. Similar sightings, like warnings from heaven or prologues of an ill omen about to happen, have been witnessed here, by our own countrymen. He saw the ghost coming slowly towards them. But look! he said, the ghost comes again. I’ll approach it even though it might sweep me aside. The ghost walked past them without altering its pace.`,
 		time_allowed: 15,
 	},
 	{
 		book_id: 1,
-		contents: `Horatio followed it. Stop, illusion! he commanded. If you can make any sound or have a voice, speak to me. If there’s any good thing that has to be done that will give you peace and bring me grace, speak to me. If you have any foreknowledge of your country’s fate, which perhaps prior knowledge of may avoid, oh speak. Or if you have hoarded stolen treasure during your life, for which reasons, they say, you spirits walk after death, tell me about it.
-        A cock crowed somewhere. The ghost continued walking.
-        Stop it, Marcellus!’ Horatio tried to grasp it but his hands went right through it.
-        Shall I hit it with my spear? said Marcellus.
-        Do so if it won’t stop, said Horatio.`,
+		contents: `Horatio followed it. Stop, illusion! he commanded. If you can make any sound or have a voice, speak to me. If there’s any good thing that has to be done that will give you peace and bring me grace, speak to me. If you have any foreknowledge of your country’s fate, which perhaps prior knowledge of may avoid, oh speak. Or if you have hoarded stolen treasure during your life, for which reasons, they say, you spirits walk after death, tell me about it. A cock crowed somewhere. The ghost continued walking. Stop it, Marcellus!’ Horatio tried to grasp it but his hands went right through it. Shall I hit it with my spear? said Marcellus. Do so if it won’t stop, said Horatio.`,
 		time_allowed: 15,
 	},
 	{
@@ -58,68 +53,17 @@ const sections = [
 	},
 	{
 		book_id: 1,
-		contents: `Speak the speech, I pray you, as I pronounced it to
-        you, trippingly on the tongue: but if you mouth it,
-        as many of your players do, I had as lief the
-        town-crier spoke my lines. Nor do not saw the air
-        too much with your hand, thus, but use all gently;
-        for in the very torrent, tempest, and, as I may say,
-        the whirlwind of passion, you must acquire and beget
-        a temperance that may give it smoothness. O, it
-        offends me to the soul to hear a robustious
-        periwig-pated fellow tear a passion to tatters, to
-        very rags, to split the ears of the groundlings, who
-        for the most part are capable of nothing but
-        inexplicable dumbshows and noise: I would have such
-        a fellow whipped for o’erdoing Termagant; it
-        out-herods Herod: pray you, avoid it.`,
+		contents: `Speak the speech, I pray you, as I pronounced it to you, trippingly on the tongue: but if you mouth it, as many of your players do, I had as lief the town-crier spoke my lines. Nor do not saw the air too much with your hand, thus, but use all gently; for in the very torrent, tempest, and, as I may say,the whirlwind of passion, you must acquire and beget a temperance that may give it smoothness. O, it offends me to the soul to hear a robustious periwig-pated fellow tear a passion to tatters, to very rags, to split the ears of the groundlings, who for the most part are capable of nothing but inexplicable dumbshows and noise: I would have such a fellow whipped for o’erdoing Termagant; it out-herods Herod: pray you, avoid it.`,
 		time_allowed: 15,
 	},
 	{
 		book_id: 1,
-		contents: `Be not too tame neither, but let your own discretion
-        be your tutor: suit the action to the word, the
-        word to the action; with this special o’erstep not
-        the modesty of nature: for any thing so overdone is
-        from the purpose of playing, whose end, both at the
-        first and now, was and is, to hold, as ’twere, the
-        mirror up to nature; to show virtue her own feature,
-        scorn her own image, and the very age and body of
-        the time his form and pressure. Now this overdone,
-        or come tardy off, though it make the unskilful
-        laugh, cannot but make the judicious grieve; the
-        censure of the which one must in your allowance
-        o’erweigh a whole theatre of others. O, there be
-        players that I have seen play, and heard others
-        praise, and that highly, not to speak it profanely,
-        that, neither having the accent of Christians nor
-        the gait of Christian, pagan, nor man, have so
-        strutted and bellowed that I have thought some of
-        nature’s journeymen had made men and not made them
-        well, they imitated humanity so abominably.`,
+		contents: `Be not too tame neither, but let your own discretion be your tutor: suit the action to the word, the word to the action; with this special o’erstep not the modesty of nature: for any thing so overdone is from the purpose of playing, whose end, both at the first and now, was and is, to hold, as ’twere, the mirror up to nature; to show virtue her own feature, scorn her own image, and the very age and body of the time his form and pressure. Now this overdone, or come tardy off, though it make the unskilful laugh, cannot but make the judicious grieve; the censure of the which one must in your allowance o’erweigh a whole theatre of others. O, there be players that I have seen play, and heard others praise and that highly, not to speak it profanely, that, neither having the accent of Christians nor the gait of Christian, pagan, nor man, have so strutted and bellowed that I have thought some of nature’s journeymen had made men and not made them well, they imitated humanity so abominably.`,
 		time_allowed: 15,
 	},
 	{
 		book_id: 1,
-		contents: `Nay, do not think I flatter;
-        For what advancement may I hope from thee
-        That no revenue hast but thy good spirits,
-        To feed and clothe thee? Why should the poor be flatter’d?
-        No, let the candied tongue lick absurd pomp,
-        And crook the pregnant hinges of the knee
-        Where thrift may follow fawning. Dost thou hear?
-        Since my dear soul was mistress of her choice
-        And could of men distinguish, her election
-        Hath seal’d thee for herself; for thou hast been
-        As one, in suffering all, that suffers nothing,
-        A man that fortune’s buffets and rewards
-        Hast ta’en with equal thanks: and blest are those
-        Whose blood and judgment are so well commingled,
-        That they are not a pipe for fortune’s finger
-        To sound what stop she please. Give me that man
-        That is not passion’s slave, and I will wear him
-        In my heart’s core, ay, in my heart of heart,
-        As I do thee.–Something too much of this.`,
+		contents: `Nay, do not think I flatter. For what advancement may I hope from thee. That no revenue hast but thy good spirits. To feed and clothe thee? Why should the poor be flatter’d? No, let the candied tongue lick absurd pomp. And crook the pregnant hinges of the knee. Where thrift may follow fawning. Dost thou hear? Since my dear soul was mistress of her choice. And could of men distinguish, her election. Hath seal’d thee for herself; for thou hast been. As one, in suffering all, that suffers nothing. A man that fortune’s buffets and rewards. Hast ta’en with equal thanks: and blest are those. Whose blood and judgment are so well commingled. That they are not a pipe for fortune’s finger. To sound what stop she please. Give me that man. That is not passion’s slave, and I will wear him. In my heart’s core, ay, in my heart of heart, As I do thee.–Something too much of this.`,
 		time_allowed: 15,
 	},
 	{
@@ -139,8 +83,7 @@ const sections = [
 	},
 	{
 		book_id: 2,
-		contents: `‘Because she could see you didn’t mean it.’ Friar Lawrence was thinking. Marrying the two young people from the feuding families would be a disaster and he couldn’t possible agree to it. Or could he? It may be the best way of bringing the families together. It could just be the salvation of Verona. It took him a second to decide. ‘Come on then, you young rascal,’ he said. ‘Come with me. This is one thing I can help you with. This could be the answer: the thing to turn your households’ hatred into love.’ ‘Well let’s hurry then,’ said Romeo. ‘I can’t wait.’
-        ‘Slow down,’ said the Friar as Romeo started running. ‘You’ll stumble if you try to go too fast.’`,
+		contents: `‘Because she could see you didn’t mean it.’ Friar Lawrence was thinking. Marrying the two young people from the feuding families would be a disaster and he couldn’t possible agree to it. Or could he? It may be the best way of bringing the families together. It could just be the salvation of Verona. It took him a second to decide. ‘Come on then, you young rascal,’ he said. ‘Come with me. This is one thing I can help you with. This could be the answer: the thing to turn your households’ hatred into love.’ ‘Well let’s hurry then,’ said Romeo. ‘I can’t wait.’ ‘Slow down,’ said the Friar as Romeo started running. ‘You’ll stumble if you try to go too fast.’`,
 		time_allowed: 15,
 	},
 	{
@@ -162,15 +105,12 @@ const sections = [
 	},
 	{
 		book_id: 2,
-		contents: `‘Oh you can tell me to do anything rather than marry Paris,’ she cried. ‘Tell me to jump from the battlements of any tower, or go out and steal. Tell me to go into a snakepit: chain me up with fierce bears. Make me spend every night in a charnel-house, covered in dead men’s rattling bones, with shinbones running with stinking slime, and yellow skulls with their bottom jaws missing. Or tell me to go into a new grave and snuggle up to a dead man in his shroud – things that would make anyone shudder. And I will do it without hesitation if it means I’ll be able to live a pure and faithful wife to my love.’
-
-        ‘Alright then,’ said the Friar. ‘I’m convinced. Here’s the plan. Go home, put on a happy face. Agree to marry Paris. Tomorrow is Wednesday. Now look here. Make sure that when you go to bed you’re alone in your room. Don’t let your nurse in.’`,
+		contents: `‘Oh you can tell me to do anything rather than marry Paris,’ she cried. ‘Tell me to jump from the battlements of any tower, or go out and steal. Tell me to go into a snakepit: chain me up with fierce bears. Make me spend every night in a charnel-house, covered in dead men’s rattling bones, with shinbones running with stinking slime, and yellow skulls with their bottom jaws missing. Or tell me to go into a new grave and snuggle up to a dead man in his shroud – things that would make anyone shudder. And I will do it without hesitation if it means I’ll be able to live a pure and faithful wife to my love.’ ‘Alright then,’ said the Friar. ‘I’m convinced. Here’s the plan. Go home, put on a happy face. Agree to marry Paris. Tomorrow is Wednesday. Now look here. Make sure that when you go to bed you’re alone in your room. Don’t let your nurse in.’`,
 		time_allowed: 15,
 	},
 	{
 		book_id: 2,
-		contents: `The Friar went to a chest and unlocked it He took out a small bottle. ‘Here. This is it. When you’re in bed drink the liquid. In a little while your body fluids will grow cold and you will have no pulse. There’ll be no warmth and no breath to show that you’re alive. The colour in your face will go and your eyes will close as though in death. Your limbs will be stiff and cold like a corpse’s.’ He paused. Juliet held out her hand.
-        ‘Then, when the bridegroom arrives to wake you up on your wedding day, there you’ll be: dead! After forty-two hours you’ll wake up as though from a pleasant sleep.’`,
+		contents: `The Friar went to a chest and unlocked it He took out a small bottle. ‘Here. This is it. When you’re in bed drink the liquid. In a little while your body fluids will grow cold and you will have no pulse. There’ll be no warmth and no breath to show that you’re alive. The colour in your face will go and your eyes will close as though in death. Your limbs will be stiff and cold like a corpse’s.’ He paused. Juliet held out her hand. ‘Then, when the bridegroom arrives to wake you up on your wedding day, there you’ll be: dead! After forty-two hours you’ll wake up as though from a pleasant sleep.’`,
 		time_allowed: 15,
 	},
 	{
@@ -190,25 +130,7 @@ const sections = [
 	},
 	{
 		book_id: 3,
-		contents: `Where hast thou been, sister? Killing swine. Sister, where thou? A sailor’s wife had chestnuts in her lap, And munched, and munched, and munched: Give me,’ quoth I: Aroint thee, witch!’ the rump-fed ronyon cries.
-		Her husband’s to Aleppo gone, master o’ the Tiger: But in a sieve I’ll thither sail,
-		And, like a rat without a tail, I’ll do, I’ll do and I’ll do!
-		I’ll give thee a wind.
-		Thou’rt kind.
-		And I another.
-		I myself have all the other; And the very ports they blow, All the quarters that they know In the shipman’s card.
-		I’ll drain him dry as hay:
-		Sleep shall neither night nor day
-		Hang upon his pent-house lid;
-		He shall live a man forbid.
-		Weary se’nnights nine times nine
-		Shall he dwindle, peak and pine:
-		Though his bark cannot be lost,
-		Yet it shall be tempest-tost.
-		Look what I have.
-		Show me, show me!
-		Here I have a pilot’s thumb,
-		Wracked as homeward he did come.`,
+		contents: `Where hast thou been, sister? Killing swine. Sister, where thou? A sailor’s wife had chestnuts in her lap. And munched, and munched, and munched: Give me,’ quoth I: Aroint thee, witch!’ the rump-fed ronyon cries. Her husband’s to Aleppo gone, master o’ the Tiger: But in a sieve I’ll thither sail, And, like a rat without a tail, I’ll do, I’ll do a I’ll do! I’ll give thee a wind. Thou’rt kind. And I another. I myself have all the other; And the very ports they blow, All the quarters that they know In the shipman’s card. I’ll drain him dry as hay: Sleep shall neither night nor day Hang upon his pent-house lid; He shall live a man forbid. Weary se’nnights nine times nine Shall he dwindle, peak and pine: Though his bark cannot be lost, Yet it shall be tempest-tost. Look what I have. Show me, show me! Here I have a pilot’s thumb, Wracked as homeward he did come.`,
 		time_allowed: 15,
 	},
 	{
@@ -243,16 +165,29 @@ const sections = [
 	},
 	{
 		book_id: 3,
-		contents: `He remembered the way Banquo had reproached the witches when they’d first put the name of king on him. And he had insisted that they speak to him. And when they did they looked respectful and hailed Banquo as the father of a line of kings. On his own head they had placed a fruitless crown and put a barren scepter in his hand! To be wrenched away by a hand not of his own family – none of his sons succeeding him. So it was for Banquo’s descendants that he had corrupted his soul. He had murdered the gracious Duncan for them! Stuck thorns in his peace of mind just for them. And given his precious soul to the Devil to turn Banquo’s sons into kings. All that for the seed of Banquo! Rather than that he would defy Fate and fight it to the death.
-		The attendant returned with two rough-looking men.`,
+		contents: `He remembered the way Banquo had reproached the witches when they’d first put the name of king on him. And he had insisted that they speak to him. And when they did they looked respectful and hailed Banquo as the father of a line of kings. On his own head they had placed a fruitless crown and put a barren scepter in his hand! To be wrenched away by a hand not of his own family – none of his sons succeeding him. So it was for Banquo’s descendants that he had corrupted his soul. He had murdered the gracious Duncan for them! Stuck thorns in his peace of mind just for them. And given his precious soul to the Devil to turn Banquo’s sons into kings. All that for the seed of Banquo! Rather than that he would defy Fate and fight it to the death. The attendant returned with two rough-looking men.`,
 		time_allowed: 15,
+	},
+];
+const enemies = [
+	{
+		combat_id: 10,
+		name: 'William Shakespeare',
+		description:
+			'William Shakespeare, Shakespeare also spelled Shakspere, byname Bard of Avon or Swan of Avon, English poet, dramatist, and actor often called the English national poet and considered by many to be the greatest dramatist of all time.',
+		hit_points: 100,
+		attack_speed: 10,
+		damage_high: 10,
+		damage_low: 1,
+		book_id: [1, 2, 3],
 	},
 ];
 
 const seedMe = async () => {
 	await sequelize.sync({ force: true });
-	await books.bulkCreate(books, { individualHooks: true });
-	await sections.bulkCreate(sections, { individualHooks: true });
+	await Book.bulkCreate(books, { individualHooks: true });
+	await Section.bulkCreate(sections, { individualHooks: true });
+	await Enemy.bulkCreate(enemies, { individualHooks: true });
 	// const bookObj = await Book.bulkCreate(books);
 	// const sectionObj = await Section.bulkCreate(sections);
 	console.log('seeding complete');
