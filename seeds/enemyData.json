@@ -1,0 +1,26 @@
+[
+    {
+        "name": "William Shakespeare",
+        "description": " ",
+        "hit_Points": 100,
+        "attack_Speed": 10000,
+        "damage_High": 15,
+        "damage_Low": 8
+    },
+    {
+        "name": "Oscar Wilde",
+        "description": " ",
+        "hit_Points": 80,
+        "attack_Speed": 10000,
+        "damage_High": 15,
+        "damage_Low": 8
+    },
+    {
+        "name": "Mary Shelly",
+        "description": " ",
+        "hit_Points": 60,
+        "attack_Speed": 12000,
+        "damage_High": 10,
+        "damage_Low": 4
+    }
+]

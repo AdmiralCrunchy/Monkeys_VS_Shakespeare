@@ -190,13 +190,7 @@ const sections = [
 	},
 	{
 		book_id: 3,
-		contents: `Where hast thou been, sister?
-		Killing swine.
-		Sister, where thou?
-		A sailor’s wife had chestnuts in her lap,
-		And munched, and munched, and munched:
-		Give me,’ quoth I:
-		Aroint thee, witch!’ the rump-fed ronyon cries.
+		contents: `Where hast thou been, sister? Killing swine. Sister, where thou? A sailor’s wife had chestnuts in her lap, And munched, and munched, and munched: Give me,’ quoth I: Aroint thee, witch!’ the rump-fed ronyon cries.
 		Her husband’s to Aleppo gone, master o’ the Tiger: But in a sieve I’ll thither sail,
 		And, like a rat without a tail, I’ll do, I’ll do and I’ll do!
 		I’ll give thee a wind.
