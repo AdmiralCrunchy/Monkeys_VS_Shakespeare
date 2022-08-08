@@ -1,3 +1,5 @@
+const { User } = require("../models/User")
+
 const users = [];
 
 // Join user to chat
