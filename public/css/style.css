@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 :root {
-	--dark-color-a: #667aff;
-	--dark-color-b: #7386ff;
+	--dark-color-a: #777;
+	--dark-color-b: rgb(136, 136, 136);
 	--light-color: #e6e9ff;
 	--success-color: #5cb85c;
 	--error-color: #d9534f;
 	--bg-main: #323232;
 	--bg-second: #777;
-	--text-main: ;
-	--text-second: ;
+	--text-main: white;
+	--text-second: #777;
 }
 
 * {
@@ -64,6 +64,8 @@ a {
 .chat-main {
 	display: grid;
 	grid-template-columns: 1fr 3fr;
+	min-height: 300px;
+	max-height: 600px;
 }
 
 .chat-sidebar {
@@ -197,12 +199,17 @@ a {
 	background-color: var(--bg-second);
 }
 
+#lobbies {
+    padding: 1.5rem;
+	background-color: var(--bg-second);
+}
+
 #siteInfo {
     padding: 1.5rem;
 	background-color: var(--bg-second);
 }
 
-#welcome {
+#welcome, #mainLobby {
 	margin-top: 1.5rem;
 }
 
@@ -212,4 +219,9 @@ a {
 
 #modalColor {
 	background-color: var(--bg-second);
+}
+
+#lobbiesTitle {
+	border-bottom: 1px solid #fff;
+	text-align: center;
 }
