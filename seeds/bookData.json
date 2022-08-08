@@ -1,0 +1,18 @@
+[
+    
+    {
+        "name": "A Midsummer Night's Dream",
+        "description": " ",
+        "author_Id": 1
+    },
+    {
+        "name": "The Picture of Dorian Gray",
+        "description": " ",
+        "author_Id": 2
+    },
+    {
+        "name": "Frankenstien",
+        "description": " ",
+        "author_Id": 3
+    }
+]
