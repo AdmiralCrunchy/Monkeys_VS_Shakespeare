@@ -4,15 +4,71 @@ window.globalTimer = null;
 let actionName = null;
 let actionTarget = null;
 let menuRan = null;
+let playerCharacter= null;
+
+class Ape {
+constructor(name, level, max_Health, health_Points, attack_Speed, attack_Damage, special_Points, role) {
+        this.name = name;
+        this.level = level;
+        this.max_Health = max_Health;
+        this.health_Points = health_Points;
+        this.attack_Speed = attack_Speed;
+        this.attack_Damage = attack_Damage;
+        this.special_Points = special_Points;
+        this.role = role;
+        this.is_Ape = true;
+    }
+    isAlive()
+    {
+        if(this.health_Points <=0){
+            console.log("they died")
+            document.getElementById(`combatLog`).innerHTML = `${this.name} has died! <br> May they live forever in monkey Valhalla!`
+            return false;
+        }
+        return true;
+    }
+}
+
+class Enemy {
+    constructor(name,max_Health, health_Points, attack_Speed, attack_Damage){
+        this.name = name;
+        this.max_Health = max_Health;
+        this.health_Points = health_Points;
+        this.attack_Speed = attack_Speed;
+        this.attack_Damage = attack_Damage;
+        this.is_Ape = false;
+    }
+    isAlive()
+    {
+        if(this.health_Points <=0){
+            document.getElementById(`combatLog`).innerHTML = `${this.name} has died their second death!`
+            this.health_Points = 0;
+            return false;
+        }
+        return true;
+    }
+}
+
+const Jeff = new Ape('Jeff', 5, 100, 100, 15000, 7, 5, 'DPS');
+const Dipper = new Ape('Dipper', 5, 100, 100, 25000, , 5, 'tank');
+const Bobo = new Ape('Bobo', 5, 100, 100, 26000, 10, 5, 'healer');
+const Angela = new Ape('Angela', 5, 100, 100, 22000, 10, 5, 'wizard');
+
+
+const BadGuy1 = new Enemy('William S.', 100, 100, 15000, 10);
+const BadGuy2 = new Enemy('Oscar Wilde', 100, 100, 20000, 8);
+const BadGuy3 = new Enemy('Mary Shelly', 100, 100, 30000, 20);
 
 const combatants = {
-    monkeys: ['Jeff', 'Dipper', 'Bobo', 'Angela'],
-    enemies: ['enemy1', 'enemy2', 'enemy3']
+    monkeys: [Jeff, Dipper, Bobo, Angela],
+    enemies: [BadGuy1, BadGuy2, BadGuy3]
 };
+
+enemyAttackSpeed = 15000;
 
 //Keyboard Variables
 
-const wordPool = `Verona was coming to life: people poured out of the houses and filled the streets while market traders set up their stalls in the grand piazza. It was a good patch, an excellent place to catch the business of those who lived and worked in the rich houses that lined Verona’s main square. The Capulet mansion was one of the biggest – filled with servants and humming with activity. It was an hour till breakfast and while the cooks sweated over the fires in the kitchen, conjuring mouthwatering aromas of baked breads and hams, the servingmen killed time as best they could. Two of them – hot, bored and restless – stepped out into the bustle of the piazza and swaggered about among the bright colours, the animal smells and the din of traders’ voices, hoping to find some action.`.split(' ');
+const wordPool = `Verona was coming to life: people poured out of the houses and filled the streets while market traders set up their stalls in the grand piazza. It was a good patch, an excellent place to catch the business of those who lived and worked in the rich houses that lined Verona’s main square. The Capulet mansion was one of the biggest filled with servants and humming with activity. It was an hour till breakfast and while the cooks sweated over the fires in the kitchen, conjuring mouthwatering aromas of baked breads and hams, the servingmen killed time as best they could. Two of them hot, bored and restless stepped out into the bustle of the piazza and swaggered about among the bright colours, the animal smells and the din of traders’ voices, hoping to find some action.`.split(' ');
 const wordsCount = wordPool.length;
 let combatTime = 30 * 1000;
 window.timer = null;
@@ -56,7 +112,12 @@ function initializeKeyboard(mode) {
     window.timer = null;
     madeError = null;
     combatTimeLeft = null;
+    finishedEarly = null;
+    window.combatStart = null;
 
+    removeClass(document.getElementById('typingBoard'), 'over');
+
+    document.getElementById('combatLog').innerHTML = "GET TYPING!!!"
     let init = document.getElementById('typingBoard');
     init.innerHTML = `<div id="wording"></div>
     <div id="cursor"></div>
@@ -65,7 +126,6 @@ function initializeKeyboard(mode) {
 
     const cursor = document.getElementById('cursor');
     const board = document.getElementById('typingBoard');
-
 
     switch(mode){
         case 'attack':
@@ -90,7 +150,22 @@ function initializeKeyboard(mode) {
             }
             combatTime = 15000;
             break;
-        case 'special':
+        case 'buff' :
+            for (let i = 0; i < 15; i++) {
+                const text = document.getElementById('wording');
+                text.innerHTML += formatWord(randomWords());
+            }
+            combatTime = 15000;
+            break;
+        case 'debuff' :
+            for (let i = 0; i < 15; i++) {
+                const text = document.getElementById('wording');
+                text.innerHTML += formatWord(randomWords());
+            }
+            combatTime = 15000;
+            break;
+
+        default:
             break;
     }
 
@@ -289,27 +364,67 @@ function removeKeyboard() {
 //-                                                   -//
 //-----------------------------------------------------//
 
-
-function gameClock() {
-    window.globalTimer = setInterval(() =>{
-        window.globalTimer++;
-    }, 1000)
+function chooseApe(){
+    document.getElementById('combatLog').innerHTML = 'Choose Your Monkey';
+    document.getElementById('typingBoard').innerHTML = ' ';
+    for(let i = 0; i < combatants.monkeys.length; i++ )
+        {
+            const x = i;
+            let menu = document.getElementById('typingBoard');
+            menu.innerHTML += makeButton(combatants.monkeys[x].name, 'choose');
+        }
+    for(let i = 0; i < combatants.monkeys.length; i++ )
+        {
+            const x = i;
+            document.getElementById(`${combatants.monkeys[x].name}chooseButton`).addEventListener('click', event =>{
+                playerCharacter = combatants.monkeys[x]
+                playerCharacter.name = 'Player';
+                combatants.monkeys[x] = playerCharacter;
+                clearButtons();
+                initializeCombat();
+            })
+        }
 }
 
-function setupAllies(){
+function getTarget(unit){
+    console.log(unit.name)
 
+    if(unit.is_Ape)
+    {
+        console.log("monkey is attacking!")
+        const randomIndex = Math.ceil(Math.random() * combatants.enemies.length-1);
+
+        return combatants.enemies[randomIndex]
+    }
+    else{
+        const randomIndex = Math.ceil(Math.random() * combatants.monkeys.length-1);
+
+        return combatants.monkeys[randomIndex]
+    }
+    
 }
 
-function createEnemies(){
+function attackClock(unit) {
 
+    window.unit = setInterval(() =>{
+        attackTarget(unit,getTarget(unit));
+        window.unit++;
+    }, unit.attack_Speed)
 }
 
-function populateViewport(){
-
+function attackTarget(attacker, target) {
+    
+    if(target.isAlive() == true)
+    {
+        target.health_Points = target.health_Points - attacker.attack_Damage
+        document.getElementById('combatLog').innerHTML = `${attacker.name} has attacked ${target.name}! <br> They have ${target.health_Points} HP Left!`
+    }
+    else{
+        document.getElementById('combatLog').innerHTML = `${attacker.name} has attacked ${target.name}! <br> OH THE HUMANITY`
+    }
 }
 
 function combatMenu(){
-    console.log("menu run");
 
     let menu = document.getElementById('typingBoard');
     menu.innerHTML = `<button id="attackButton">ATTACK</button><button id="defendButton">DEFEND</button><button id="healButton">HEAL</button><button id="specialButton">SPECIAL</button>`;
@@ -318,7 +433,6 @@ function combatMenu(){
             actionName = 'attack';
             clearButtons();
             setupAttack();
-            console.log("it ran")
         })
         
         document.getElementById('defendButton').addEventListener('click', event=>{
@@ -340,13 +454,14 @@ function combatMenu(){
         })
 }
 
-function initializeCombat(){
-    gameClock();
+function initializeCombat(){    
     setupAllies();
     createEnemies();
     populateViewport();
     combatMenu();
 }
+
+
 
 function clearLog(){
     document.getElementById('combatLog').innerHTML = ' ';
@@ -359,6 +474,13 @@ function clearButtons(){
     menu.innerHTML = " ";
 }
 
+//------------------------------//
+//-                            -//
+//        Menu Chioces          //
+//-                            -//
+//------------------------------//
+
+
 function setupAttack(){
     //pick enemy
     let log = document.getElementById(`combatLog`)
@@ -368,37 +490,52 @@ function setupAttack(){
     {
         const x = i;
         let menu = document.getElementById('typingBoard');
-        menu.innerHTML += makeButton(combatants.enemies[x]);
-        createEventListen(combatants.enemies[x]);
+        menu.innerHTML += makeButton(combatants.enemies[x].name, 'attack');
+        
+    }
+    backButton();
+    for(let i = 0; i < combatants.enemies.length; i++ )
+    {
+        const x = i;
+        createEventListen(combatants.enemies[x].name, 'attack');
     }
 
-    backButton();
+    
 }
 function setupDefend(){
     //pick ally or self
-    player = 'tank';
     
     document.getElementById(`combatLog`).innerHTML = "Who will you defend?"
+    let player = combatants.monkeys.find(element => element.name == 'Player')
 
-    if(player == 'tank')
+    if(player.role == 'tank')
     {
         
         for(let i = 0; i < combatants.monkeys.length; i++ )
         {
             const x = i;
             let menu = document.getElementById('typingBoard');
-            menu.innerHTML += makeButton(combatants.monkeys[x]);
-            createEventListen(combatants.monkeys[x]);
-        }
+            menu.innerHTML += makeButton(combatants.monkeys[x].name, 'defend');
 
-        backButton()
+        }
+        backButton();
+        for(let i = 0; i < combatants.monkeys.length; i++ )
+        {
+            const x = i;
+            createEventListen(combatants.monkeys[x].name, 'defend');
+        }  
+    }
+    else{
+        document.getElementById('combatLog').innerHTML = "Defending Self!";
+        initializeKeyboard(actionName);
     }
 }
 function setupHeal(){
     //pick ally or self
     
-    player = 'healer';
-    if(player == 'healer')
+    let player = combatants.monkeys.find(element => element.name == 'Player')
+
+    if(player.role == 'healer')
     {
         document.getElementById(`combatLog`).innerHTML = "Who will you heal?"
 
@@ -406,11 +543,15 @@ function setupHeal(){
         {
             const x = i;
             let menu = document.getElementById('typingBoard');
-            menu.innerHTML += makeButton(combatants.monkeys[x]);
-            createEventListen(combatants.monkeys[x]);
+            menu.innerHTML += makeButton(combatants.monkeys[x].name, 'heal');
+            
         }
-
         backButton()
+        for(let i = 0; i < combatants.monkeys.length; i++ )
+        {
+            const x = i;
+            createEventListen(combatants.monkeys[x].name, 'heal');
+        }     
     }
     else{
         
@@ -421,10 +562,9 @@ function setupHeal(){
     
 }
 
-function createEventListen(name){
-    console.log("create event:",name)
-    document.getElementById(`${name}Button`).addEventListener('click', event =>{
-        console.log("You have clicked", name, "Button")
+function createEventListen(name, action){
+    document.getElementById(`${name}${action}Button`).addEventListener('click', event =>{
+        event.preventDefault();
         actionTarget = name;
         clearButtons();
         initializeKeyboard(actionName);
@@ -462,25 +602,27 @@ function actionLand(wpm, acc, total){
     combatMenu()
 }
 
-function makeButton(name){
-    return `<button id='${name}Button'>${name}</button>`
+function makeButton(name, action){
+    return `<button id='${name}${action}Button'>${name}</button>`
 }
 
 
 function setupSpecial(){
     
     let menu = document.getElementById('typingBoard');
-    menu.innerHTML += makeButton('buff');
-    menu.innerHTML += makeButton('debuff')
-    document.getElementById(`buffButton`).addEventListener('click', event =>{
+    menu.innerHTML += makeButton('buff', 'Allies');
+    menu.innerHTML += makeButton('debuff','Enemies')
+    backButton();
+    document.getElementById(`buffAlliesButton`).addEventListener('click', event =>{
         clearButtons();
         setupBuff();
     })
-    document.getElementById(`debuffButton`).addEventListener('click', event =>{
+    document.getElementById(`debuffEnemiesButton`).addEventListener('click', event =>{
+        
         clearButtons();
         setupDebuff();
     })
-    backButton();
+    
 }
 
 function setupDebuff(){
@@ -490,10 +632,15 @@ function setupDebuff(){
     {
         const x = i;
         let menu = document.getElementById('typingBoard');
-        menu.innerHTML += makeButton(combatants.enemies[x]);
-        createEventListen(combatants.enemies[x]);
+        menu.innerHTML += makeButton(combatants.enemies[x].name, 'debuff');
     }
-    backButton()
+    backButton();
+    for(let i = 0; i < combatants.enemies.length; i++ )
+    {
+        const x = i;
+        createEventListen(combatants.enemies[x].name, 'debuff');
+    }
+    actionName = 'debuff';
 }
 
 function setupBuff(){
@@ -502,12 +649,17 @@ function setupBuff(){
         for(let i = 0; i < combatants.monkeys.length; i++ )
         {
             const x = i;
-            console.log(x)
             let menu = document.getElementById('typingBoard');
-            menu.innerHTML += makeButton(combatants.monkeys[x]);
-            createEventListen(combatants.monkeys[x]);
+            menu.innerHTML += makeButton(combatants.monkeys[x].name, 'buff');
+            
         }
-        backButton()
+        backButton();
+        for(let i = 0; i < combatants.monkeys.length; i++ )
+        {
+            const x = i;
+            createEventListen(combatants.monkeys[x].name, 'buff');
+        }
+        actionName = 'buff';
     }
 
 function backButton(){
@@ -522,6 +674,31 @@ function backButton(){
     })
 }
 
-initializeCombat();
+chooseApe();
 
 
+function setupAllies(){
+    for(let i = 0; i < combatants.monkeys.length; i++ )
+    {
+        const x = i;
+        if(combatants.monkeys[x].name !== 'Player')
+        {
+            console.log(combatants.monkeys[x].name, "created Attack")
+            attackClock(combatants.monkeys[x]);
+        }
+    }
+}
+
+function createEnemies(){
+    for(let i = 0; i < combatants.enemies.length; i++ )
+    {
+        const x = i;
+
+        attackClock(combatants.enemies[x]);
+    }
+
+}
+
+function populateViewport(){
+
+}
