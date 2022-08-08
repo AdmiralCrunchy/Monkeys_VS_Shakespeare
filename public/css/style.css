@@ -24,6 +24,12 @@ body {
 	background: var(--bg-main);
 }
 
+footer {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+}
+
 ul {
 	list-style: none;
 }
@@ -213,7 +219,7 @@ a {
 	margin-top: 1.5rem;
 }
 
-.navbar {
+.navbar, footer {
 	background-color: var(--bg-second);
 }
 
