@@ -58,10 +58,10 @@ User.init({
     // }
 }, {
     sequelize,
-    // timestamps: false,
-    // freezeTableName: true,
-    // underscored: true,
-    // modelName: 'user',
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'user',
     hooks: {
         beforeCreate: userObj => {
             userObj.password = bcrypt.hashSync(userObj.password, 4);
