@@ -6,6 +6,7 @@ let playerCharacter= null;
 let playerAlly = null;
 let chosenEnemy = null;
 let actionTarget = null;
+let totalWordsTyped = null;
 
 class Ape {
 constructor(name, level, max_Health, health_Points, attack_Speed, attack_Damage, special_Points, role) {
