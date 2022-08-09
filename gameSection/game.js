@@ -7,6 +7,8 @@ let playerAlly = null;
 let chosenEnemy = null;
 let actionTarget = null;
 let totalWordsTyped = null;
+let totalWPM = null;
+let totalAttempts = null;
 
 class Ape {
 constructor(name, level, max_Health, health_Points, attack_Speed, attack_Damage, special_Points, role) {
@@ -24,7 +26,6 @@ constructor(name, level, max_Health, health_Points, attack_Speed, attack_Damage,
     isAlive()
     {
         if(this.health_Points <=0){
-            console.log("they died")
             document.getElementById(`combatLog`).innerHTML = `${this.name} has died! <br> May they live forever in monkey Valhalla!`;
             this.health_Points = 0;
             if(this.name == 'Player')
@@ -60,10 +61,10 @@ class Enemy {
     }
 }
 
-const Jeff = new Ape('Jeff', 5, 100, 100, 15000, 7, 5, 'DPS');
-const Dipper = new Ape('Dipper', 5, 100, 100, 25000, 10, 5, 'tank');
-const Bobo = new Ape('Bobo', 5, 100, 100, 26000, 10, 5, 'healer');
-const Angela = new Ape('Angela', 5, 100, 100, 22000, 9, 5, 'wizard');
+const Jeff = new Ape('Jeff', 5, 100, 100, 1500, 7, 5, 'DPS');
+const Dipper = new Ape('Dipper', 5, 100, 100, 2500, 10, 5, 'tank');
+const Bobo = new Ape('Bobo', 5, 100, 100, 2600, 10, 5, 'healer');
+const Angela = new Ape('Angela', 5, 100, 100, 2200, 9, 5, 'wizard');
 
 
 const BadGuy1 = new Enemy('William Shakespeare', 100, 100, 15000, 10);
@@ -248,6 +249,8 @@ function getScore(){
         return incorrectLetters.length === 0 && correctLetters.length === letters.length
     })
 
+    
+    
     if(finishedEarly)
     {
         wpmScore = Math.floor(correctWords.length / ((combatTime/1000) - combatTimeLeft) * 60); 
@@ -262,9 +265,10 @@ function getScore(){
     }
 
     totalDone = Math.floor(100*((correctWords.length+1) / (words.length)))
-
-    combatants.monkeys
-
+    
+    totalWordsTyped += typedWords.length;
+    totalWPM += wpmScore;
+    totalAttempts++;
     removeKeyboard();
     actionLand(wpmScore, accScore, totalDone);
 }
@@ -272,7 +276,6 @@ function getScore(){
 function actionLand(wpm, acc, total){
 
     let player = combatants.monkeys.find(element => element.name = "Player")
-    console.log("This is the player: ",player)
     let totalScore = null;
 
     if(finishedEarly){
@@ -281,11 +284,11 @@ function actionLand(wpm, acc, total){
     else{
         totalScore = Math.floor(wpm * (acc/ 100)*(total/100))
     }
-    console.log("action is: "+actionName) 
-    console.log("Total Score: ",totalScore);
     switch (actionName) {
         case 'attack':
+            player.attack_Damage = player.attack_Damage + totalScore
             attackTarget(player, actionTarget);
+            player.attack_Damage = player.attack_Damage - totalScore
             break;
         case 'defend':
             defendTarget(player, actionTarget, totalScore);
@@ -463,7 +466,6 @@ function attackClock(unit) {
         if(unit.health_Points <=0)
         {
             clearInterval(window.unit)
-            console.log(`${unit.name} is dead`)
         }
     }, unit.attack_Speed)
 }
@@ -476,16 +478,17 @@ function attackTarget(attacker, target) {
 
         if(target.defense_Points > 0)
         {
-            console.log("Before Defense Points:",target.defense_Points)
             leftOver = attacker.attack_Damage - target.defense_Points;
             target.defense_Points = target.defense_Points - attacker.attack_Damage;
-            console.log("After Defense Points:",target.defense_Points)
-            console.log("Left Over:",leftOver)
             if(leftOver <= 0)
             {
                 target.defense_Points = 0;
-                console.log(target.defense_Points)
-                document.getElementById('combatLog').innerHTML = `${target.name} completely blocked ${attacker.name}'s attack! <br> TOTALLY EMBARRASSSING`;
+                if(attacker.name == "Player")
+                {
+                    document.getElementById('info').innerHTML = `${target.name} completely blocked ${attacker.name}'s attack! <br> TOTALLY EMBARRASSSING`;
+                }else{
+                    document.getElementById('combatLog').innerHTML = `${target.name} completely blocked ${attacker.name}'s attack! <br> TOTALLY EMBARRASSSING`;
+                }
             }else{
                 target.health_Points = target.health_Points - leftOver;
                 document.getElementById('combatLog').innerHTML = `${attacker.name} has attacked ${target.name}! <br> They have ${target.health_Points} HP Left!`
@@ -495,8 +498,16 @@ function attackTarget(attacker, target) {
         }
         else
         {
+
             target.health_Points = target.health_Points - attacker.attack_Damage;
-            document.getElementById('combatLog').innerHTML = `${attacker.name} has attacked ${target.name}! <br> They have ${target.health_Points} HP Left!`
+            if(attacker.name == "Player")
+            {
+                document.getElementById('info').innerHTML = `${attacker.name} has attacked ${target.name}! <br> They have ${target.health_Points} HP Left!`
+            }else{
+                document.getElementById('combatLog').innerHTML = `${attacker.name} has attacked ${target.name}! <br> They have ${target.health_Points} HP Left!`
+            }
+            
+            
             target.isAlive();
         }
     }
@@ -547,14 +558,12 @@ function buffTarget(origin, target){
 }
 
 function debuffTarget(origin, target){
-    console.log(debuff)
     const speedBuff = 20000;
     target.attack_Speed = target.attack_Speed + speedBuff;
     document.getElementById('info').innerHTML = `${origin.name} has attacked ${target.name}! <br> They have attack much slower!`
 }
 
 function combatMenu(){
-    console.log('menu Run')
     document.getElementById('combatLog').innerHTML ='What Action will you take? <br> Choose one of the following: '
     let menu = document.getElementById('typingBoard');
     menu.innerHTML = `<button id="attackButton">ATTACK</button><button id="defendButton">DEFEND</button><button id="healButton">HEAL</button><button id="specialButton">SPECIAL</button>`;
@@ -858,8 +867,6 @@ function setupAllies(){
     for(let i = 0; i < combatants.monkeys.length; i++ )
     {
         const x = i;
-        console.log(combatants.monkeys[x].name)
-
         if(combatants.monkeys[x].name == playerAlly.name)
         {
             attackClock(combatants.monkeys[x]);
@@ -891,19 +898,20 @@ function populateViewport(){
 
 function EndGame(){
     document.getElementById('playBoard').innerHTML = `<section id="endScreen"></section>`;
-    console.log("player hp", combatants.monkeys[0].health_Points)
-    console.log("Enemy hp", combatants.enemies[0].health_Points)
 
     if(combatants.monkeys[0].health_Points <= 0){
-        console.log("player lose")
-        document.getElementById('endScreen').innerHTML = "YOU LOSE"
+        document.getElementById('endScreen').innerHTML = "<p>YOU LOSE</p>"
     }
     if(combatants.enemies[0].health_Points <= 0)
     {
-        console.log("player win")
-        document.getElementById('endScreen').innerHTML = "YOU WIN!"
+        document.getElementById('endScreen').innerHTML = `<p>YOU WIN!</p>` 
     }
-
+    console.log(totalAttempts)
+    console.log(totalWPM)
+    let avgWPM = totalWPM / totalAttempts;
+    
+    document.getElementById('endScreen').innerHTML +=`<p> Total Words Typed: ${totalWordsTyped}<p>`
+    document.getElementById('endScreen').innerHTML +=`<p> Average WPM: ${avgWPM}<p>`
 }
 
 

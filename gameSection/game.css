@@ -174,3 +174,9 @@ img#player{
 #typingBoard.over #focus-error{
     display: none;
 }
+
+#endScreen{
+    text-align: center;
+    background-color: var(--primaryColor);
+    color: var(black);
+}
