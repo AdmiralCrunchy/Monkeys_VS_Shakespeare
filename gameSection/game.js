@@ -62,11 +62,11 @@ class Enemy {
 
 const Jeff = new Ape('Jeff', 5, 100, 100, 15000, 7, 5, 'DPS');
 const Dipper = new Ape('Dipper', 5, 100, 100, 25000, 10, 5, 'tank');
-const Bobo = new Ape('Bobo', 5, 100, 100, 2600, 10, 5, 'healer');
+const Bobo = new Ape('Bobo', 5, 100, 100, 26000, 10, 5, 'healer');
 const Angela = new Ape('Angela', 5, 100, 100, 22000, 9, 5, 'wizard');
 
 
-const BadGuy1 = new Enemy('William S.', 100, 100, 15000, 10);
+const BadGuy1 = new Enemy('William Shakespeare', 100, 100, 15000, 10);
 const BadGuy2 = new Enemy('Oscar Wilde', 100, 100, 20000, 8);
 const BadGuy3 = new Enemy('Mary Shelly', 100, 100, 30000, 20);
 
@@ -161,7 +161,7 @@ function initializeKeyboard(mode) {
             }
             break;
         case 'defend':
-            for (let i = 0; i < 2; i++) {
+            for (let i = 0; i < 50; i++) {
                 const text = document.getElementById('wording');
                 text.innerHTML += formatWord(randomWords());
             }
@@ -199,6 +199,10 @@ function initializeKeyboard(mode) {
     cursor.style.top = (board.getBoundingClientRect().top+2)+'px' ;
     cursor.style.left = (board.getBoundingClientRect().left+2)+'px';
    
+}
+
+function gettingQuotes(){
+
 }
 
 //----------------------------//
@@ -277,7 +281,7 @@ function actionLand(wpm, acc, total){
     else{
         totalScore = Math.floor(wpm * (acc/ 100)*(total/100))
     }
-  
+    console.log("action is: "+actionName) 
     console.log("Total Score: ",totalScore);
     switch (actionName) {
         case 'attack':
@@ -289,17 +293,15 @@ function actionLand(wpm, acc, total){
         case 'heal':
             healTarget(player, actionTarget, totalScore);
             break;
-        case 'buffed':
+        case 'buff':
             buffTarget(player, actionTarget);
             break;
-        case 'debuffed':
+        case 'debuff':
             debuffTarget(player, actionTarget);
             break;
         default:
             break;
     }
-
-    document.getElementById('combatLog').innerHTML = `Player ${actionName}ed ${actionTarget.name} for HP <br> STATS WPM: ${wpm} Accuracy: ${acc}% Percentage Finished: ${total}%`
 
     actionName = null;
     combatMenu()
@@ -487,15 +489,15 @@ function attackTarget(attacker, target) {
             }else{
                 target.health_Points = target.health_Points - leftOver;
                 document.getElementById('combatLog').innerHTML = `${attacker.name} has attacked ${target.name}! <br> They have ${target.health_Points} HP Left!`
-                if(target.name == 'Player' && target.health_Points < 0){
-                    gameOver('lose');
-                }
+                target.isAlive();
             }
+            
         }
         else
         {
             target.health_Points = target.health_Points - attacker.attack_Damage;
             document.getElementById('combatLog').innerHTML = `${attacker.name} has attacked ${target.name}! <br> They have ${target.health_Points} HP Left!`
+            target.isAlive();
         }
     }
     else{
@@ -529,6 +531,26 @@ function healTarget(origin, target, score) {
     else{
         document.getElementById('combatLog').innerHTML = `${origin.name} has healed ${target.name}! <br> BUT THEY ARE SUPER DEAD!`
     }
+}
+
+function buffTarget(origin, target){
+    if(target.name == 'Player')
+    {
+        document.getElementById('info').innerHTML = `${origin.name} has attacked ${target.name}! <br> They have ${target.attack_Speed} !`
+    }
+    else{
+        const speedBuff = -1000;
+        target.attack_Speed = target.attack_Speed + speedBuff;
+        document.getElementById('info').innerHTML = `${origin.name} buffed ${target.name} attack speed! <br> Now its ${target.attack_Speed} !`
+    }
+    
+}
+
+function debuffTarget(origin, target){
+    console.log(debuff)
+    const speedBuff = 20000;
+    target.attack_Speed = target.attack_Speed + speedBuff;
+    document.getElementById('info').innerHTML = `${origin.name} has attacked ${target.name}! <br> They have attack much slower!`
 }
 
 function combatMenu(){
@@ -699,7 +721,7 @@ function setupDebuff(){
     {
         const x = i;
         let menu = document.getElementById('typingBoard');
-        menu.innerHTML += makeButton(combatants.enemies[x], 'debuff');
+        menu.innerHTML += makeButton(combatants.enemies[x].name, 'debuff');
     }
     backButton();
     for(let i = 0; i < combatants.enemies.length; i++ )
@@ -717,17 +739,17 @@ function setupBuff(){
         {
             const x = i;
             let menu = document.getElementById('typingBoard');
-            menu.innerHTML += makeButton(combatants.monkeys[x], 'buff');
+            menu.innerHTML += makeButton(combatants.monkeys[x].name, 'buffing');
             
         }
         backButton();
         for(let i = 0; i < combatants.monkeys.length; i++ )
         {
             const x = i;
-            createEventListen(combatants.monkeys[x], 'buff');
+            createEventListen(combatants.monkeys[x], 'buffing');
         }
         actionName = 'buff';
-    }
+}
 
 function backButton(){
     let menu = document.getElementById('typingBoard');
@@ -769,8 +791,10 @@ function chooseApe(){
         {
             const x = i;
             document.getElementById(`${combatantsPool.monkeys[x].name}chooseButton`).addEventListener('click', event =>{
+                document.getElementById('playerCorner').innerHTML = `<img id="player" src="./images/${combatantsPool.monkeys[x].name}.png" alt=""></div>`
                 combatants.monkeys[0] = combatantsPool.monkeys[x]
                 combatants.monkeys[0].name = 'Player';
+                
                 clearButtons();
                 chooseAllies();
             })
@@ -796,6 +820,7 @@ function chooseAllies(){
             document.getElementById(`${combatantsPool.monkeys[x].name}chooseButton`).addEventListener('click', event =>{
                 combatants.monkeys[1] = combatantsPool.monkeys[x];
                 playerAlly = combatantsPool.monkeys[x];
+                document.getElementById('playerCorner').innerHTML += `<img id="player" src="./images/${combatantsPool.monkeys[x].name}.png" alt=""></div>`
                 clearButtons();
                 chooseEnemy();
             })
@@ -804,10 +829,11 @@ function chooseAllies(){
 }
 
 function chooseEnemy(){
-    
+    document.getElementById('combatLog').innerHTML = 'Choose an enemy <br>';
     for(let i = 0; i < combatantsPool.enemies.length; i++ )
     {
         const x = i;
+        document.getElementById('combatLog').innerHTML += combatantsPool.enemies[x].name + " ";
         let menu = document.getElementById('typingBoard');
         menu.innerHTML += makeButton(combatantsPool.enemies[x].name, 'choose');
         
@@ -819,6 +845,7 @@ function chooseEnemy(){
         document.getElementById(`${combatantsPool.enemies[x].name}chooseButton`).addEventListener('click', event =>{
             combatants.enemies[0] = combatantsPool.enemies[x];
             chosenEnemy = combatantsPool.enemies[x];
+            document.getElementById('enemyCorner').innerHTML = `<img src="./images/${combatantsPool.enemies[x].name}.png" alt=""></div>`
             clearButtons();
             initializeCombat();
         })
@@ -863,7 +890,19 @@ function populateViewport(){
 //----------------------------//
 
 function EndGame(){
-    document.getElementById('playBoard').innerHTML = `<section> </section>`;
+    document.getElementById('playBoard').innerHTML = `<section id="endScreen"></section>`;
+    console.log("player hp", combatants.monkeys[0].health_Points)
+    console.log("Enemy hp", combatants.enemies[0].health_Points)
+
+    if(combatants.monkeys[0].health_Points <= 0){
+        console.log("player lose")
+        document.getElementById('endScreen').innerHTML = "YOU LOSE"
+    }
+    if(combatants.enemies[0].health_Points <= 0)
+    {
+        console.log("player win")
+        document.getElementById('endScreen').innerHTML = "YOU WIN!"
+    }
 
 }
 
