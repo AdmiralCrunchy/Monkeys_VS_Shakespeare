@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+:root{
+
+--bgColor: rgb(45, 45, 45);
+--textPrimary: rgb(250, 250, 250);
+--secondaryColor:rgb(225, 225, 225);
+--primaryColor:rgb(255, 136, 0);
+--textSecondary: rgb(148, 148, 148);
+--textWrong: red;
+
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bgColor);
+    color: var(--textPrimary)
+}
+
+main{
+    width: 600px;
+    margin: 50px auto;
+}
+
+h1{
+    color: var(--primaryColor)
+}
+
+#typingBoard:focus{
+    outline: 0;
+
+}
+
+#header{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 20px 6px 30px;
+}
+
+#buttons{
+    text-align: right;
+}
+
+#info{
+    color: var(--primaryColor)
+}
+
+button {
+    background: rgba(255,255,255,.2);
+    border:0;
+    color: rgb(255, 154, 2);
+    padding: 5px 20px;
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+h1 svg{
+    width: 40px;
+}
+
+#visualBoard{
+    height: 240px;
+    background-color: var(--secondaryColor);
+    column-count: 2;
+    border-radius: 5px 5px 5px 5px;
+}
+
+img {
+    height: 200px;
+    width: 200px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+img#player{
+    height: 100px;
+    width: 100px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#playerCorner{
+    background-color: rgb(4, 255, 0);
+}
+
+#enemyCorner{
+    background-color: rgb(230, 16, 16);
+}
+
+#combatlog{
+    min-height: 40px;
+    background-color: bisque;
+    color: black;
+}
+
+#typingBoard{
+    line-height: 35px;
+    height: 105px;
+    overflow: hidden;
+    position: relative;
+}
+
+#wording{
+    filter: blur(5px);
+    color: var(--textSecondary);
+}
+
+#typingBoard:focus #wording{
+    filter: blur(0);
+}
+
+#focus-error{
+    position: absolute;
+    inset:0;
+    text-align: center;
+    padding-top: 40px;
+}
+
+#typingBoard:focus #cursor{
+    display: block;
+}
+
+#typingBoard:focus #focus-error{
+    display: none;
+}
+
+.words{
+    display: inline-block;
+    margin: 0 5px;
+
+}
+
+@keyframes blink{
+    0%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+#cursor{
+    display: none;
+    width: 2px;
+    height: 1.4rem;
+    background-color: var(--primaryColor);
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    animation: blink .5s infinite;
+}
+
+
+.letter.correct{
+    color: var(--textPrimary)
+}
+
+.letter.incorrect{
+    color: var(--textWrong)
+}
+
+#typingBoard.over #words{
+    opacity: .25;
+    filter: blur(0);
+}
+
+#typingBoard.over #cursor {
+    display: none;
+}
+
+#typingBoard.over #focus-error{
+    display: none;
+}
+
+#endScreen{
+    text-align: center;
+    background-color: var(--primaryColor);
+    color: var(black);
+}
