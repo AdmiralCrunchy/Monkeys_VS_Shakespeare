@@ -1,3 +1,5 @@
+let pulledApi = null;
+
 //Combat Vairables
 window.globalTimer = null;
 let actionName = null;
@@ -51,20 +53,20 @@ class Enemy {
     isAlive()
     {
         if(this.health_Points <=0){
-            document.getElementById(`combatLog`).innerHTML = `${this.name} has died their second death!`
             this.health_Points = 0;
             clearInterval(window.this);
             EndGame();
+            document.getElementById(`playerBoard`).innerHTML += `${this.name} has died their second death!`
             return false;
         }
         return true;
     }
 }
 
-const Jeff = new Ape('Jeff', 5, 100, 100, 1500, 7, 5, 'DPS');
+const Jeff = new Ape('Jeff', 5, 100, 100, 15000, 7, 5, 'DPS');
 const Dipper = new Ape('Dipper', 5, 100, 100, 2500, 10, 5, 'tank');
-const Bobo = new Ape('Bobo', 5, 100, 100, 2600, 10, 5, 'healer');
-const Angela = new Ape('Angela', 5, 100, 100, 2200, 9, 5, 'wizard');
+const Bobo = new Ape('Bobo', 5, 100, 100, 26000, 10, 5, 'healer');
+const Angela = new Ape('Angela', 5, 100, 100, 22000, 9, 5, 'wizard');
 
 
 const BadGuy1 = new Enemy('William Shakespeare', 100, 100, 15000, 10);
@@ -81,11 +83,10 @@ const combatants = {
     enemies: [chosenEnemy]
 };
 
-enemyAttackSpeed = 15000;
-
 //Keyboard Variables
 
-const wordPool = `Verona was coming to life: people poured out of the houses and filled the streets while market traders set up their stalls in the grand piazza. It was a good patch, an excellent place to catch the business of those who lived and worked in the rich houses that lined Verona’s main square. The Capulet mansion was one of the biggest filled with servants and humming with activity. It was an hour till breakfast and while the cooks sweated over the fires in the kitchen, conjuring mouthwatering aromas of baked breads and hams, the servingmen killed time as best they could. Two of them hot, bored and restless stepped out into the bustle of the piazza and swaggered about among the bright colours, the animal smells and the din of traders’ voices, hoping to find some action.`.split(' ');
+let wordPoolPool = null;
+let wordPool = `Verona was coming to life: people poured out of the houses and filled the streets while market traders set up their stalls in the grand piazza. It was a good patch, an excellent place to catch the business of those who lived and worked in the rich houses that lined Verona’s main square. The Capulet mansion was one of the biggest filled with servants and humming with activity. It was an hour till breakfast and while the cooks sweated over the fires in the kitchen, conjuring mouthwatering aromas of baked breads and hams, the servingmen killed time as best they could. Two of them hot, bored and restless stepped out into the bustle of the piazza and swaggered about among the bright colours, the animal smells and the din of traders’ voices, hoping to find some action.`.split(' ');
 const wordsCount = wordPool.length;
 let combatTime = 30000;
 window.timer = null;
@@ -158,7 +159,7 @@ function initializeKeyboard(mode) {
             {
                 const v = i;
                 const text = document.getElementById('wording');
-                text.innerHTML += formatWord(wordPool[v])
+                text.innerHTML += formatWord(wordPool[v]);
             }
             break;
         case 'defend':
@@ -169,6 +170,7 @@ function initializeKeyboard(mode) {
             combatTime = 6000;
             break;
         case 'heal':
+            
             for (let i = 0; i < 15; i++) {
                 const text = document.getElementById('wording');
                 text.innerHTML += formatWord(randomWords());
@@ -204,6 +206,23 @@ function initializeKeyboard(mode) {
 
 function gettingQuotes(){
 
+    fetch("https://type.fit/api/quotes")
+    .then(function(response) {
+         return response.json();
+    })
+    .then(function(data) {
+        console.log("JSON: ",data);
+
+        pulledApi = data;
+        let stringedApi = JSON.stringify(pulledApi)
+        let parsedApi = JSON.parse(stringedApi)
+
+    console.log(parsedApi)
+
+    // const randomIndex = Math.ceil(Math.random() * parsedApi.length-1);
+    // wordPool = parsedApi[randomIndex].text;
+    });
+    
 }
 
 //----------------------------//
@@ -411,7 +430,7 @@ document.getElementById('typingBoard').addEventListener('keyup', event=>{
         
     }
 
-    if(currentWord.getBoundingClientRect().top > 395) {
+    if(currentWord.getBoundingClientRect().top > 420) {
         const words = document.getElementById('wording')
         const margin = parseInt(words.style.marginTop || '0px');
         words.style.marginTop = (margin - 35)+ 'px';
@@ -800,7 +819,7 @@ function chooseApe(){
         {
             const x = i;
             document.getElementById(`${combatantsPool.monkeys[x].name}chooseButton`).addEventListener('click', event =>{
-                document.getElementById('playerCorner').innerHTML = `<img id="player" src="./images/${combatantsPool.monkeys[x].name}.png" alt=""></div>`
+                document.getElementById('playerCorner').innerHTML = `<div><img id="player" src="./images/${combatantsPool.monkeys[x].name}.png" alt=""> ${combatantsPool.monkeys[x].name}:Player </div>`
                 combatants.monkeys[0] = combatantsPool.monkeys[x]
                 combatants.monkeys[0].name = 'Player';
                 
@@ -829,7 +848,7 @@ function chooseAllies(){
             document.getElementById(`${combatantsPool.monkeys[x].name}chooseButton`).addEventListener('click', event =>{
                 combatants.monkeys[1] = combatantsPool.monkeys[x];
                 playerAlly = combatantsPool.monkeys[x];
-                document.getElementById('playerCorner').innerHTML += `<img id="player" src="./images/${combatantsPool.monkeys[x].name}.png" alt=""></div>`
+                document.getElementById('playerCorner').innerHTML += `<div> <img id="player" src="./images/${combatantsPool.monkeys[x].name}.png" alt="">${combatantsPool.monkeys[x].name}</div>`
                 clearButtons();
                 chooseEnemy();
             })
@@ -921,4 +940,5 @@ function EndGame(){
 //-                          -//
 //----------------------------//
 
+gettingQuotes();
 chooseApe();
