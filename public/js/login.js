@@ -31,7 +31,7 @@ document.getElementById('signUpBtn').addEventListener("click", e => {
     }
     console.log(userObj)
 
-    fetch("/api/users/login", {
+    fetch("/api/users/", {
         method: "POST",
         body: JSON.stringify(userObj),
         headers: {
