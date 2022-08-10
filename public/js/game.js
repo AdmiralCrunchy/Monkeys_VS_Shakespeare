@@ -37,6 +37,7 @@ class Ape {
 }
 
 class Enemy {
+
     constructor(name, max_Health, health_Points, attack_Speed, attack_Damage) {
         this.name = name;
         this.max_Health = max_Health;
@@ -46,6 +47,7 @@ class Enemy {
         this.defense_Points = 0;
         this.is_Ape = false;
     }
+
     isAlive() {
         if (this.health_Points <= 0) {
             document.getElementById(`combatLog`).innerHTML = `${this.name} has died their second death!`
@@ -106,6 +108,7 @@ let combatTimeLeft = null;
 //       Word Generation      //
 //-                          -//
 //----------------------------//
+
 
 function addClass(el, name) {
     if (!el) {
@@ -479,7 +482,6 @@ function attackTarget(attacker, target) {
                 document.getElementById('combatLog').innerHTML = `${attacker.name} has attacked ${target.name}! <br> They have ${target.health_Points} HP Left!`
                 target.isAlive();
             }
-
         }
         else {
 

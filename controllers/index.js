@@ -19,7 +19,6 @@ router.get('/', (req, res) => {
 // 	res.render('chat', req.session.user);
 // });
 
-
 router.get('/chat', (req, res) => {
 	res.render('chat');
 });
