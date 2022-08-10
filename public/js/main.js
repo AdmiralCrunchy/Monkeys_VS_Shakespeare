@@ -1,14 +1,24 @@
-const chatForm = document.getElementById('chat-form')
-const chatMessages = document.querySelector(".chat-messages")
-const roomName = document.getElementById("room-name")
-const userList = document.getElementById("users")
+const chatForm = document.getElementById('chat-form');
+const chatMessages = document.querySelector('.chat-messages');
+const roomName = document.getElementById('room-name');
+const userList = document.getElementById('users');
+const leaveBtn = document.getElementById('leave-btn');
 // Get UserName and room from url
 
 const { username, room } = Qs.parse(location.search, {
-    ignoreQueryPrefix: true
-})
-
-
+	ignoreQueryPrefix: true,
+});
+leaveBtn.addEventListener('click', (e) => {
+	fetch('/game', {
+		method: 'GET',
+	}).then((res) => {
+		if (res.ok) {
+			location.href = '/game';
+		} else {
+			alert('trumpet sound');
+		}
+	});
+});
 
 // const socket = io('https://monkeys-vs-shake-io.herokuapp.com/');
 
@@ -35,7 +45,6 @@ const { username, room } = Qs.parse(location.search, {
 //     // Getting message text
 //     const msg = e.target.elements.msg.value
 
-
 //     //  Emits message to the server.
 //     socket.emit('chatMessage', msg);
 
@@ -45,24 +54,23 @@ const { username, room } = Qs.parse(location.search, {
 
 // })
 
-
 // Output message to DOMM
 
 function outputMessage(message) {
-    const div = document.createElement('div')
-    div.classList.add('message');
-    div.innerHTML = ` <p class="meta">${message.username}<span>${message.time}</span></p>
+	const div = document.createElement('div');
+	div.classList.add('message');
+	div.innerHTML = ` <p class="meta">${message.username}<span>${message.time}</span></p>
   <p class="text"> ${message.text}</p>`;
-    document.querySelector('.chat-messages').appendChild(div);
+	document.querySelector('.chat-messages').appendChild(div);
 }
 
-// add room name to dom 
+// add room name to dom
 function outputRoomName(room) {
-    roomName.innerText = room;
+	roomName.innerText = room;
 }
 
 function outputUsers(users) {
-    userList.innerHTML = `
-  ${users.map(user => `<li>${user.username}</li>`).join('')}
+	userList.innerHTML = `
+  ${users.map((user) => `<li>${user.username}</li>`).join('')}
   `;
 }
