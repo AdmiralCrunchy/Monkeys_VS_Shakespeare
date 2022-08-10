@@ -1,17 +1,20 @@
-const { Model, DataTypes} = require('sequelize');
-const sequelize = require('..config/connection');
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
-class Monkey extends Model {}
+class Monkey extends Model { }
 
 Monkey.init(
     {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            primaryKey: true,
             autoIncrement: true,
-            unique: true
+            validator: {
+                isUnique: true,
+            }
         },
-        owner:{
+        owner: {
             type: DataTypes.INTEGER,
             allowNull: true,
             references: {
@@ -36,7 +39,7 @@ Monkey.init(
             },
         },
     },
-    { 
+    {
         sequelize,
         timestamps: false,
         freezeTableName: true,

@@ -1,12 +1,12 @@
-const { Model, DataTypes} = require('sequelize');
-const sequelize = require('..config/connection');
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
-class Enemy extends Model {}
+class Enemy extends Model { }
 
 Enemy.init(
     {
         id: {
-            type: DataTypes.INTEGER,    
+            type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
@@ -53,7 +53,7 @@ Enemy.init(
             allowNull: true,
         },
     },
-    { 
+    {
         sequelize,
         timestamps: false,
         freezeTableName: true,

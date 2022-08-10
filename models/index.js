@@ -1,6 +1,9 @@
 const Enemy = require("./Enemy")
 const Book = require("./Book")
 const Section = require("./Section")
+const User = require("./User")
+const Job = require("./Job")
+const Monkey = require("./Monkey")
 
 Enemy.hasMany(Book, {
     onDelete: "CASCADE",
@@ -18,7 +21,7 @@ module.exports = {
     Enemy,
     Book,
     Section,
-    //User
-    //Job
-    //Monkey
+    User,
+    Job,
+    Monkey
 }
