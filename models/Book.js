@@ -22,14 +22,14 @@ Book.init(
             type: DataTypes.TEXT,
             allowNull: true,
         },
-        author_Id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'enemy',
-                key: 'id',
-            }
-        },
+        // author_Id: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     references: {
+        //         model: 'enemy',
+        //         key: 'id',
+        //     }
+        // },
 
     },
     {
