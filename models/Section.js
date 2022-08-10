@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('..config/connection');
+const sequelize = require('../config/connection');
 
-class Section extends Model {}
+class Section extends Model { }
 
 Section.init(
 	{
@@ -11,20 +11,20 @@ Section.init(
 			autoIncrement: true,
 			primaryKey: true,
 		},
-		book_Id: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-			references: {
-				model: 'book',
-				key: 'id',
-			},
-		},
+		// book_Id: {
+		// 	type: DataTypes.INTEGER,
+		// 	allowNull: false,
+		// 	references: {
+		// 		model: 'book',
+		// 		key: 'id',
+		// 	},
+		// },
 		contents: {
 			type: DataTypes.TEXT,
 			allowNull: false,
 		},
 		time_Allowed: {
-			type: DateTypes.INTEGER,
+			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
 	},

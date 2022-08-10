@@ -1,38 +1,38 @@
-const { User } = require("../models/User")
+// const { User } = require("../models/User")
 
-const users = [];
+// const users = [];
 
-// Join user to chat
+// // Join user to chat
 
-function userJoin(id, username, room) {
-    const user = { id, username, room };
+// function userJoin(id, username, room) {
+//     const user = { id, username, room };
 
-    users.push(user);
+//     users.push(user);
 
-    return user;
-}
-// GET urrent user
-function getCurrentUser(id) {
-    return users.find(user => user.id === id);
+//     return user;
+// }
+// // GET urrent user
+// function getCurrentUser(id) {
+//     return users.find(user => user.id === id);
 
-}
-// User Leaves Chat
-function userLeave(id) {
-    const index = users.findIndex(user => user.id === id);
-    if (index !== -1) {
-        return users.splice(index, 1)[0];
-    }
+// }
+// // User Leaves Chat
+// function userLeave(id) {
+//     const index = users.findIndex(user => user.id === id);
+//     if (index !== -1) {
+//         return users.splice(index, 1)[0];
+//     }
 
-}
-// GET ROOM USERS
-function getRoomUsers(room) {
-    return users.filter(user => user.room === room)
-}
+// }
+// // GET ROOM USERS
+// function getRoomUsers(room) {
+//     return users.filter(user => user.room === room)
+// }
 
-module.exports = {
-    userJoin,
-    getCurrentUser,
-    userLeave,
-    getRoomUsers,
-}
+// module.exports = {
+//     userJoin,
+//     getCurrentUser,
+//     userLeave,
+//     getRoomUsers,
+// }
 

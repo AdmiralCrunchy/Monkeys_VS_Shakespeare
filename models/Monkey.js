@@ -1,24 +1,27 @@
-const { Model, DataTypes} = require('sequelize');
-const sequelize = require('..config/connection');
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
-class Monkey extends Model {}
+class Monkey extends Model { }
 
 Monkey.init(
     {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            primaryKey: true,
             autoIncrement: true,
-            unique: true
+            validator: {
+                isUnique: true,
+            }
         },
-        owner:{
-            type: DataTypes.INTEGER,
-            allowNull: true,
-            references: {
-                model: 'user',
-                key: 'id',
-            },
-        },
+        // owner: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: true,
+        //     references: {
+        //         model: 'user',
+        //         key: 'id',
+        //     },
+        // },
         words_Typed: {
             type: DataTypes.INTEGER,
             allowNull: true,
@@ -27,16 +30,16 @@ Monkey.init(
             type: DataTypes.INTEGER,
             allowNull: true,
         },
-        monkey_Job: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
-            references: {
-                model: 'job',
-                key: 'id',
-            },
-        },
+        // monkey_Job: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: true,
+        //     references: {
+        //         model: 'job',
+        //         key: 'id',
+        //     },
+        // },
     },
-    { 
+    {
         sequelize,
         timestamps: false,
         freezeTableName: true,

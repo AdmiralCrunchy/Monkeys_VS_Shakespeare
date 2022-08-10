@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const { User } = require('../models')
 const apiRoutes = require('./api');
+
+router.use("/api", apiRoutes)
+
 
 
 router.get('/', (req, res) => {
@@ -8,14 +12,13 @@ router.get('/', (req, res) => {
 });
 
 // router.get('/', (req, res) => {
-	// 	if (!req.session.user) {
-		// 		4;
-		// 		res.redirect('/login');
-		// 	}
-		// 	res.render('chat', req.session.user);
-		// });
-		
-		
+// 	if (!req.session.user) {
+// 		4;
+// 		res.redirect('/login');
+// 	}
+// 	res.render('chat', req.session.user);
+// });
+
 router.get('/chat', (req, res) => {
 	res.render('chat');
 });
