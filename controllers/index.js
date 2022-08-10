@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { User } = require('../models')
 const apiRoutes = require('./api');
 
 router.use("/api", apiRoutes)

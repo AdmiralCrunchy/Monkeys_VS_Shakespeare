@@ -2,13 +2,14 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const allRoutes = require('./controllers');
 const sequelize = require('./config/connection');
-const session = require('express-session');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
+// const session = require('express-session');
+// const SequelizeStore = require('connect-session-sequelize')(session.Store);
 // const socketio = require('socket.io');
 const path = require('path');
 const http = require('http');
 
 const { User, Book, Job, Section, Monkey, Enemy } = require('./models')
+
 
 // Sets up the Express App
 // =============================================================
@@ -21,17 +22,17 @@ const server = http.createServer(app);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const sess = {
-	secret: process.env.SESSION_SECRET,
-	cookie: {
-		maxAge: 1000 * 60 * 60 * 2,
-	},
-	resave: false,
-	saveUninitialized: true,
-	store: new SequelizeStore({
-		db: sequelize,
-	}),
-};
+// const sess = {
+// 	secret: process.env.SESSION_SECRET,
+// 	cookie: {
+// 		maxAge: 1000 * 60 * 60 * 2,
+// 	},
+// 	resave: false,
+// 	saveUninitialized: true,
+// 	store: new SequelizeStore({
+// 		db: sequelize,
+// 	}),
+// };
 
 // // SOCKET.IO
 // // Run when client connects
@@ -89,7 +90,7 @@ const sess = {
 // 	});
 // });
 
-app.use(session(sess));
+// app.use(session(sess));
 
 // Static directory
 app.use(express.static('public'));

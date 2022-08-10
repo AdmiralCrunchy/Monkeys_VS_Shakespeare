@@ -11,14 +11,14 @@ Section.init(
 			autoIncrement: true,
 			primaryKey: true,
 		},
-		book_Id: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-			references: {
-				model: 'book',
-				key: 'id',
-			},
-		},
+		// book_Id: {
+		// 	type: DataTypes.INTEGER,
+		// 	allowNull: false,
+		// 	references: {
+		// 		model: 'book',
+		// 		key: 'id',
+		// 	},
+		// },
 		contents: {
 			type: DataTypes.TEXT,
 			allowNull: false,

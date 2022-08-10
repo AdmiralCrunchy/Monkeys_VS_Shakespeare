@@ -14,14 +14,14 @@ Monkey.init(
                 isUnique: true,
             }
         },
-        owner: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
-            references: {
-                model: 'user',
-                key: 'id',
-            },
-        },
+        // owner: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: true,
+        //     references: {
+        //         model: 'user',
+        //         key: 'id',
+        //     },
+        // },
         words_Typed: {
             type: DataTypes.INTEGER,
             allowNull: true,
@@ -30,14 +30,14 @@ Monkey.init(
             type: DataTypes.INTEGER,
             allowNull: true,
         },
-        monkey_Job: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
-            references: {
-                model: 'job',
-                key: 'id',
-            },
-        },
+        // monkey_Job: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: true,
+        //     references: {
+        //         model: 'job',
+        //         key: 'id',
+        //     },
+        // },
     },
     {
         sequelize,
