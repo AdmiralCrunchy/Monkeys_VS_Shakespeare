@@ -10,40 +10,40 @@ const { username, room } = Qs.parse(location.search, {
 
 
 
-const socket = io('https://monkeys-vs-shake-io.herokuapp.com/');
+// const socket = io('https://monkeys-vs-shake-io.herokuapp.com/');
 
-// JOin Chat room
-socket.emit('joinRoom', { username, room })
+// // JOin Chat room
+// socket.emit('joinRoom', { username, room })
 
-// Get room and users
-socket.on('roomUsers', ({ room, users }) => {
-    outputRoomName(room);
-    outputUsers(users);
-})
+// // Get room and users
+// socket.on('roomUsers', ({ room, users }) => {
+//     outputRoomName(room);
+//     outputUsers(users);
+// })
 
-socket.on('message', message => {
-    outputMessage(message);
+// socket.on('message', message => {
+//     outputMessage(message);
 
-    //Scroll down
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-})
+//     //Scroll down
+//     chatMessages.scrollTop = chatMessages.scrollHeight;
+// })
 
-// Message Submit
-chatForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+// // Message Submit
+// chatForm.addEventListener('submit', (e) => {
+//     e.preventDefault();
 
-    // Getting message text
-    const msg = e.target.elements.msg.value
+//     // Getting message text
+//     const msg = e.target.elements.msg.value
 
 
-    //  Emits message to the server.
-    socket.emit('chatMessage', msg);
+//     //  Emits message to the server.
+//     socket.emit('chatMessage', msg);
 
-    // Clears INPUT
-    e.target.elements.msg.value = '';
-    e.target.elements.msg.focus();
+//     // Clears INPUT
+//     e.target.elements.msg.value = '';
+//     e.target.elements.msg.focus();
 
-})
+// })
 
 
 // Output message to DOMM
