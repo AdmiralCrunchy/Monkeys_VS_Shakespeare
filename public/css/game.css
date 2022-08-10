@@ -17,13 +17,9 @@ body{
     color: var(--textPrimary)
 }
 
-main{
+#gameBoard{
     width: 600px;
     margin: 50px auto;
-}
-
-h1{
-    color: var(--primaryColor)
 }
 
 #typingBoard:focus{
@@ -152,7 +148,6 @@ img#player{
     left: 5px;
     animation: blink .5s infinite;
 }
-
 
 .letter.correct{
     color: var(--textPrimary)
