@@ -17,7 +17,7 @@
 					<input type="password" class="form-control" id="login-password">
 				</div>
 				<button id="loginBtn" type="submit" class="btn btn-primary">Login</button>
-				<button id="signUpBtn" type="button" class="btn btn-primary" data-toggle="modal"
+				<button id="startSignUpBtn" type="button" class="btn btn-primary" data-toggle="modal"
 					data-target="#signUpModal">Sign Up</button>
 				<!-- Modal -->
 				<div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="signUpModalLabel"
@@ -34,7 +34,7 @@
 								<form>
 									<div class="form-group">
 										<label for="new-username-form">Username</label>
-										<input type="email" class="form-control" id="new-email-form"
+										<input type="text" class="form-control" id="new-username-form"
 											aria-describedby="emailHelp">
 									</div>
 									<div class="form-group">
@@ -52,7 +52,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary">Sign Up</button>
+								<button type="button" id="signUpBtn"class="btn btn-primary">Sign Up</button>
 							</div>
 						</div>
 					</div>
