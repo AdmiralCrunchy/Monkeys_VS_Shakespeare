@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt")
 const { User } = require('../../models');
 
 router.get('/', (req, res) => {
-    User.findAll(), then(data => {
+    User.findAll().then(data => {
         res.json(data)
     }).catch(err => {
         res.status(500).json({ msg: "womp womp", err })
@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
         email: req.body.email,
         password: req.body.password,
         username: req.body.username
-    }), then(data => {
+    }).then(data => {
         res.json(data)
     }).catch(err => {
         res.status(500).json({ msg: "womp womp", err })
