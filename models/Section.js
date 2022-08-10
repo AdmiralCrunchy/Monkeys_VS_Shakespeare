@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('..config/connection');
+const sequelize = require('../config/connection');
 
-class Section extends Model {}
+class Section extends Model { }
 
 Section.init(
 	{
@@ -24,7 +24,7 @@ Section.init(
 			allowNull: false,
 		},
 		time_Allowed: {
-			type: DateTypes.INTEGER,
+			type: DataTypes.INTEGER,
 			allowNull: false,
 		},
 	},

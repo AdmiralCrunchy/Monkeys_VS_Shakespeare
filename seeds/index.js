@@ -1,15 +1,25 @@
-const sequelize = require('../config/connection');
-const seedBook = require('./book');
-const seedPaintings = require('./paintingData');
+const sequelize = require('../config/connection')
+const { User, } = require('../models')
 
-const seedAll = async () => {
+const users = [
+  {
+    username: "rockstar",
+    email: "ningboninja@gmail.com",
+    password: "password",
+
+  },
+  {
+    username: "happyboy",
+    email: "cooltown@gmail.com",
+    password: "password",
+  }
+]
+const seedMe = async () => {
   await sequelize.sync({ force: true });
+  await User.bulkCreate(users, { individualHooks: true });
 
-  await seedBook();
-
-  await seedPaintings();
-
+  console.log("seeding complete!");
   process.exit(0);
-};
+}
 
-seedAll();
+seedMe();
