@@ -64,7 +64,7 @@ class Enemy {
 }
 
 const Jeff = new Ape('Jeff', 5, 100, 100, 15000, 7, 5, 'DPS');
-const Dipper = new Ape('Dipper', 5, 100, 100, 2500, 10, 5, 'tank');
+const Dipper = new Ape('Dipper', 5, 100, 100, 25000, 10, 5, 'tank');
 const Bobo = new Ape('Bobo', 5, 100, 100, 26000, 10, 5, 'healer');
 const Angela = new Ape('Angela', 5, 100, 100, 22000, 9, 5, 'wizard');
 
