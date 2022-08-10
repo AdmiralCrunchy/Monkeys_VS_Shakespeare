@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Section extends Model { }
+class Section extends Model {}
 
 Section.init(
 	{
@@ -11,14 +11,15 @@ Section.init(
 			autoIncrement: true,
 			primaryKey: true,
 		},
-		// book_Id: {
-		// 	type: DataTypes.INTEGER,
-		// 	allowNull: false,
-		// 	references: {
-		// 		model: 'book',
-		// 		key: 'id',
-		// 	},
-		// },
+		book_Id: {
+			type: DataTypes.INTEGER,
+			allowNull: false,
+			references: {
+				model: 'Book',
+				key: 'id',
+				defaultValue: 1,
+			},
+		},
 		contents: {
 			type: DataTypes.TEXT,
 			allowNull: false,
@@ -26,6 +27,7 @@ Section.init(
 		time_Allowed: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
+			defaultValue: 1500,
 		},
 	},
 	{
