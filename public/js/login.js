@@ -6,8 +6,8 @@ document.getElementById('loginBtn').addEventListener("submit", e => {
     }
     console.log(userObj)
 
-    fetch("/api/users/login", {
-        method: "POST",
+    fetch("/api/users", {
+        method: "GET",
         body: JSON.stringify(userObj),
         headers: {
             "Content-Type": "application/json"
@@ -31,7 +31,7 @@ document.getElementById('signUpBtn').addEventListener("click", e => {
     }
     console.log(userObj)
 
-    fetch("/api/users/login", {
+    fetch("/api/users", {
         method: "POST",
         body: JSON.stringify(userObj),
         headers: {

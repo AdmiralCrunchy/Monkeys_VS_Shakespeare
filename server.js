@@ -21,17 +21,17 @@ const server = http.createServer(app);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// const sess = {
-// 	secret: process.env.SESSION_SECRET,
-// 	cookie: {
-// 		maxAge: 1000 * 60 * 60 * 2,
-// 	},
-// 	resave: false,
-// 	saveUninitialized: true,
-// 	store: new SequelizeStore({
-// 		db: sequelize,
-// 	}),
-// };
+const sess = {
+	secret: process.env.SESSION_SECRET,
+	cookie: {
+		maxAge: 1000 * 60 * 60 * 2,
+	},
+	resave: false,
+	saveUninitialized: true,
+	store: new SequelizeStore({
+		db: sequelize,
+	}),
+};
 
 // // SOCKET.IO
 // // Run when client connects
@@ -89,7 +89,7 @@ app.use(express.json());
 // 	});
 // });
 
-// app.use(session(sess));
+app.use(session(sess));
 
 // Static directory
 app.use(express.static('public'));

@@ -6,6 +6,7 @@ const { User } = require('../../models');
 router.get('/', (req, res) => {
     User.findAll().then(data => {
         res.json(data)
+        console.log("You are getting this information!")
     }).catch(err => {
         res.status(500).json({ msg: "womp womp", err })
     })
@@ -22,6 +23,7 @@ router.post('/', (req, res) => {
         res.status(500).json({ msg: "womp womp", err })
     })
 })
+
 // FROM UserRoutes
 router.post('/', async (req, res) => {
     try {
