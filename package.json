@@ -1,36 +1,37 @@
 {
-	"name": "monkeys_vs_shakespeare",
-	"version": "1.0.0",
-	"description": "## Description",
-	"main": "server.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "node server.js",
-		"seed": "node seeds"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/AdmiralCrunchy/Monkeys_VS_Shakespeare.git"
-	},
-	"author": "",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/AdmiralCrunchy/Monkeys_VS_Shakespeare/issues"
-	},
-	"homepage": "https://github.com/AdmiralCrunchy/Monkeys_VS_Shakespeare#readme",
-	"dependencies": {
-		"bcrypt": "^5.0.1",
-		"connect-session-sequelize": "^7.1.4",
-		"dotenv": "^16.0.1",
-		"express": "^4.18.1",
-		"express-handlebars": "^6.0.6",
-		"express-session": "^1.17.3",
-		"moment": "^2.29.4",
-		"mysql2": "^2.3.3",
-		"qs": "^6.11.0",
-		"sequelize": "^6.21.3",
-		"socket.io": "^4.5.1",
-		"socket.io-client": "^4.5.1",
-		"socketio": "^1.0.0"
-	}
+  "name": "monkeys_vs_shakespeare",
+  "version": "1.0.0",
+  "description": "## Description",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "seed": "node seeds"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdmiralCrunchy/Monkeys_VS_Shakespeare.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdmiralCrunchy/Monkeys_VS_Shakespeare/issues"
+  },
+  "homepage": "https://github.com/AdmiralCrunchy/Monkeys_VS_Shakespeare#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.4",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "express-session": "^1.17.3",
+    "moment": "^2.29.4",
+    "mysql2": "^2.3.3",
+    "qs": "^6.11.0",
+    "sequelize": "^6.21.3",
+    "socket.io": "^4.5.1",
+    "socket.io-client": "^4.5.1",
+    "socketio": "^1.0.0"
+  },
+  "keywords": []
 }

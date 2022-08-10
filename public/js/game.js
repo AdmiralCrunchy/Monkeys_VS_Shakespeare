@@ -1,3 +1,14 @@
+const api_url ="https://zenquotes.io/api/quotes/";
+
+async function getapi(url)
+{
+  const response = await fetch(url);
+  var data = await response.json();
+  console.log(data);
+}
+
+getapi(api_url);
+
 //Combat Vairables
 window.globalTimer = null;
 let actionName = null;
@@ -78,10 +89,8 @@ const combatants = {
     enemies: [chosenEnemy]
 };
 
-enemyAttackSpeed = 15000;
-
 //Keyboard Variables
-
+const sectionPool = [];
 const wordPool = `Verona was coming to life: people poured out of the houses and filled the streets while market traders set up their stalls in the grand piazza. It was a good patch, an excellent place to catch the business of those who lived and worked in the rich houses that lined Verona’s main square. The Capulet mansion was one of the biggest filled with servants and humming with activity. It was an hour till breakfast and while the cooks sweated over the fires in the kitchen, conjuring mouthwatering aromas of baked breads and hams, the servingmen killed time as best they could. Two of them hot, bored and restless stepped out into the bustle of the piazza and swaggered about among the bright colours, the animal smells and the din of traders’ voices, hoping to find some action.`.split(' ');
 const wordsCount = wordPool.length;
 let combatTime = 30000;

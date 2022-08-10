@@ -36,14 +36,6 @@ Enemy.init(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        // book_Id: {
-        //     type: DataTypes.INTEGER,
-        //     allowNull: false,
-        //     references: {
-        //         model: 'book',
-        //         key: 'id',
-        //     },
-        // },
         is_Alive: {
             type: DataTypes.BOOLEAN,
             default: true,
