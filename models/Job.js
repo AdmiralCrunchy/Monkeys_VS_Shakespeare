@@ -1,13 +1,18 @@
-const { Model, DataTypes} = require('sequelize');
-const sequelize = require('..config/connection');
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
-class Job extends Model {}
+class Job extends Model { }
 
 Job.init(
     {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
+            primaryKey: true,
+            autoIncrement: true,
+            validator: {
+                isUnique: true,
+            }
         },
         name: {
             type: DataTypes.STRING,
@@ -17,16 +22,16 @@ Job.init(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        health_Points:{
-            type: Datatypes.INTEGER,
+        health_Points: {
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         attack_damage: {
-            type: Datatypes.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         special_Points: {
-            type: Datatypes.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         is_Hasted: {
@@ -34,7 +39,7 @@ Job.init(
             allowNull: true,
         },
     },
-    { 
+    {
         sequelize,
         timestamps: false,
         freezeTableName: true,

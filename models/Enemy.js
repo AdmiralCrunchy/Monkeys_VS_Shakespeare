@@ -1,12 +1,12 @@
-const { Model, DataTypes} = require('sequelize');
-const sequelize = require('..config/connection');
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
-class Enemy extends Model {}
+class Enemy extends Model { }
 
 Enemy.init(
     {
         id: {
-            type: DataTypes.INTEGER,    
+            type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
@@ -36,14 +36,14 @@ Enemy.init(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        book_Id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'book',
-                key: 'id',
-            },
-        },
+        // book_Id: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     references: {
+        //         model: 'book',
+        //         key: 'id',
+        //     },
+        // },
         is_Alive: {
             type: DataTypes.BOOLEAN,
             default: true,
@@ -53,7 +53,7 @@ Enemy.init(
             allowNull: true,
         },
     },
-    { 
+    {
         sequelize,
         timestamps: false,
         freezeTableName: true,

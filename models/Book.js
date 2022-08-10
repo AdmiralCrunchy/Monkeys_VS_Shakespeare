@@ -1,12 +1,12 @@
-const { Model, DataTypes} = require('sequelize');
-const sequelize = require('..config/connection');
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
-class Book extends Model {}
+class Book extends Model { }
 
 Book.init(
     {
         id: {
-            type: DataTypes.INTEGER,    
+            type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
@@ -22,17 +22,17 @@ Book.init(
             type: DataTypes.TEXT,
             allowNull: true,
         },
-        author_Id: {
-           type: DataTypes.INTEGER,
-           allowNull: false,
-           references: {
-                model: 'enemy',
-                key: 'id',
-           } 
-        },
+        // author_Id: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     references: {
+        //         model: 'enemy',
+        //         key: 'id',
+        //     }
+        // },
 
     },
-    { 
+    {
         sequelize,
         timestamps: false,
         freezeTableName: true,
