@@ -8,8 +8,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const path = require('path');
 const http = require('http');
 
-const { User, Book, Job, Section, Monkey, Enemy } = require('./models')
-
+const { User, Book, Job, Section, Monkey, Enemy } = require('./models');
 
 // Sets up the Express App
 // =============================================================
