@@ -1,8 +1,8 @@
 document.querySelector('#login').addEventListener("submit", e=>{
     e.preventDefault();
     const userObj = {
-        email: document.querySelector("#login-email").value,
-        password: document.querySelector('#login-password').value,
+        email: document.querySelector("#email-login").value,
+        password: document.querySelector('#password-login').value,
     }
     fetch("/api/users/login",{
         method:"POST",
@@ -12,7 +12,7 @@ document.querySelector('#login').addEventListener("submit", e=>{
         }
     }).then(res=>{
         if(res.ok){
-          location.href = "/secretclub"
+          location.href = "/chat"
         } else {
             alert("trumpet sound")
         }

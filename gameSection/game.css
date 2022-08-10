@@ -143,7 +143,6 @@ img{
     animation: blink .5s infinite;
 }
 
-
 .letter.correct{
     color: var(--textPrimary)
 }

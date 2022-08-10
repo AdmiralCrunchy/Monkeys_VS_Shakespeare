@@ -10,6 +10,13 @@
 	--bg-second: #777;
 	--text-main: white;
 	--text-second: #777;
+
+	--bgColor: rgb(45, 45, 45);
+	--textPrimary: rgb(250, 250, 250);
+	--secondaryColor:rgb(225, 225, 225);
+	--primaryColor:rgb(255, 136, 0);
+	--textSecondary: rgb(148, 148, 148);
+	--textWrong: red;
 }
 
 * {
@@ -231,3 +238,6 @@ a {
 	border-bottom: 1px solid #fff;
 	text-align: center;
 }
+
+/* Game Styling */
+
