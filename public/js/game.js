@@ -957,7 +957,7 @@ function endGameClock(){
     window.endGameTime= setInterval(() =>{        
         window.endGameTime++;
         console.log(window.endGameTime)
-        if(window.endGameTime >= 10)
+        if(window.endGameTime >= 50)
         {
             fetch('/chat', {
                 method: 'GET',
