@@ -85,9 +85,8 @@ const combatants = {
 
 //Keyboard Variables
 
-let wordPoolPool = null;
-let wordPool = `Verona was coming to life: people poured out of the houses and filled the streets while market traders set up their stalls in the grand piazza. It was a good patch, an excellent place to catch the business of those who lived and worked in the rich houses that lined Verona’s main square. The Capulet mansion was one of the biggest filled with servants and humming with activity. It was an hour till breakfast and while the cooks sweated over the fires in the kitchen, conjuring mouthwatering aromas of baked breads and hams, the servingmen killed time as best they could. Two of them hot, bored and restless stepped out into the bustle of the piazza and swaggered about among the bright colours, the animal smells and the din of traders’ voices, hoping to find some action.`.split(' ');
-const wordsCount = wordPool.length;
+let wordPoolPool = ["The King doth keep his revels here tonight; Take heed the Queen come not within his sight, For Oberon is passing fell and wrath, Because that she, as her attendant, hath A lovely boy, stol’n from an Indian king; She never had so sweet a changeling. And jealous Oberon would have the childKnight of his train, to trace the forests wild: But she perforce withholds the lovèd boy, Crowns him with flowers, and makes him all her joy. And now they never meet in grove or green, By fountain clear, or spangled starlight sheen, But they do square; that all their elves for fear Creep into acorn cups, and hide them there.", "Verona was coming to life: people poured out of the houses and filled the streets while market traders set up their stalls in the grand piazza. It was a good patch, an excellent place to catch the business of those who lived and worked in the rich houses that lined Verona’s main square.", "The Capulet mansion was one of the biggest filled with servants and humming with activity. It was an hour till breakfast and while the cooks sweated over the fires in the kitchen, conjuring mouthwatering aromas of baked breads and hams, the servingmen killed time as best they could. Two of them hot, bored and restless stepped out into the bustle of the piazza and swaggered about among the bright colours, the animal smells and the din of traders’ voices, hoping to find some action.`, 'Was it all true? Had the portrait really changed? Or had it been simply his own imagination that had made him see a look of evil where there had been a look of joy? Surely a painted canvas could not alter? The thing was absurd. It would serve as a tale to tell Basil some day. It would make him smile.", "Fair lovers, you are fortunately met. Of this discourse we more will hear anon. Egeus, I will overbear your will; For in the temple, by and by with us, These couples shall eternally be knit. And, for the morning now is something worn, Our purpos’d hunting shall be set aside. Away with us to Athens. Three and three, We’ll hold a feast in great solemnity. Come, Hippolyta", "Believe me, king of shadows, I mistook. Did not you tell me I should know the man By the Athenian garments he had on? And so far blameless proves my enterprise That I have ’nointed an Athenian’s eyes: And so far am I glad it so did sort, As this their jangling I esteem a sport."];
+let wordPool = null;
 let combatTime = 30000;
 window.timer = null;
 window.combatStart = null;
@@ -126,12 +125,18 @@ function removeClass(el,name){
 }
 
 function randomWords() {
+    const wordsCount = wordPool.length;
     const randomIndex = Math.ceil(Math.random() * wordsCount-1);
     return wordPool[randomIndex];
 }
 
 function formatWord(word) {
     return `<div class="words"><span class="letter">${word.split('').join(`</span><span class="letter">`)}</span></div>`;
+}
+
+function pullPool(){
+    const randomIndex = Math.ceil(Math.random() * wordPoolPool.length-1);
+    return wordPoolPool[randomIndex];
 }
 
 function initializeKeyboard(mode) {
@@ -149,28 +154,33 @@ function initializeKeyboard(mode) {
     <div id="cursor"></div>
     <div id="focus-error">Click here to get back into the action!</div>`
     finishedEarly = null;
+    
+    let tempFile = pullPool()
+    
+    wordPool = tempFile.split(' ');
 
     const cursor = document.getElementById('cursor');
     const board = document.getElementById('typingBoard');
 
     switch(mode){
         case 'attack':
-            for(let i = 0; i <= wordsCount-1; i++)
+        
+            for(let i = 0; i <= wordPool.length-1; i++)
             {
                 const v = i;
                 const text = document.getElementById('wording');
                 text.innerHTML += formatWord(wordPool[v]);
             }
+            combatTime = 30000;
             break;
         case 'defend':
             for (let i = 0; i < 50; i++) {
                 const text = document.getElementById('wording');
                 text.innerHTML += formatWord(randomWords());
             }
-            combatTime = 6000;
+            combatTime = 15000;
             break;
         case 'heal':
-            
             for (let i = 0; i < 15; i++) {
                 const text = document.getElementById('wording');
                 text.innerHTML += formatWord(randomWords());
@@ -430,7 +440,7 @@ document.getElementById('typingBoard').addEventListener('keyup', event=>{
         
     }
 
-    if(currentWord.getBoundingClientRect().top > 420) {
+    if(currentWord.getBoundingClientRect().top > 425) {
         const words = document.getElementById('wording')
         const margin = parseInt(words.style.marginTop || '0px');
         words.style.marginTop = (margin - 35)+ 'px';
@@ -612,7 +622,8 @@ function combatMenu(){
         })
 }
 
-function initializeCombat(){    
+function initializeCombat(){
+    gameClock();    
     setupAllies();
     createEnemies();
     populateViewport();
@@ -684,6 +695,7 @@ function setupDefend(){
     }
     else{
         document.getElementById('combatLog').innerHTML = "Defending Self!";
+        actionTarget = player;
         initializeKeyboard(actionName);
     }
 }
@@ -919,11 +931,11 @@ function EndGame(){
     document.getElementById('playBoard').innerHTML = `<section id="endScreen"></section>`;
 
     if(combatants.monkeys[0].health_Points <= 0){
-        document.getElementById('endScreen').innerHTML = "<p>YOU LOSE</p>"
+        document.getElementById('endScreen').innerHTML = "<h1>YOU LOSE</h1>"
     }
     if(combatants.enemies[0].health_Points <= 0)
     {
-        document.getElementById('endScreen').innerHTML = `<p>YOU WIN!</p>` 
+        document.getElementById('endScreen').innerHTML = `<h1>YOU WIN!</h1>` 
     }
     console.log(totalAttempts)
     console.log(totalWPM)
@@ -931,8 +943,35 @@ function EndGame(){
     
     document.getElementById('endScreen').innerHTML +=`<p> Total Words Typed: ${totalWordsTyped}<p>`
     document.getElementById('endScreen').innerHTML +=`<p> Average WPM: ${avgWPM}<p>`
+    document.getElementById('endScreen').innerHTML +=`<p> Game Time: ${window.Game}<p>`
+
+    endGameClock();
 }
 
+
+function gameClock(){
+    window.Game= setInterval(() =>{        
+        window.Game++;
+    }, 1000)
+}
+
+function endGameClock(){
+    window.endGame= setInterval(() =>{        
+        window.endGame++;
+        if(window.endGame == 10)
+        {
+            fetch('/chat', {
+                method: 'GET',
+            }).then((res) => {
+                if (res.ok) {
+                    location.href = '/chat';
+                } else {
+                    alert('trumpet sound');
+                }
+            });
+        }
+    }, 1000)
+}
 
 //----------------------------//
 //-                          -//
@@ -940,5 +979,4 @@ function EndGame(){
 //-                          -//
 //----------------------------//
 
-gettingQuotes();
 chooseApe();
