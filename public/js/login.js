@@ -1,8 +1,8 @@
-document.getElementById('loginBtn').addEventListener("submit", e => {
+document.getElementById('loginBtn').addEventListener("click", e => {
     e.preventDefault();
-    const userObj = {
-        email: document.querySelector("#email-login").value,
-        password: document.querySelector('#password-login').value,
+     const userObj = {
+        email: document.querySelector("#login-email").value,
+        password: document.querySelector('#login-password').value,
     }
     console.log(userObj)
 
@@ -14,6 +14,7 @@ document.getElementById('loginBtn').addEventListener("submit", e => {
         }
     }).then(res => {
         if (res.ok) {
+            console.log("this worked")
             location.href = "/chat"
         } else {
             alert("trumpet sound")
