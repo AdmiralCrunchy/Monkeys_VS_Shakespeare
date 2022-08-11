@@ -15,6 +15,7 @@ document.getElementById('loginBtn').addEventListener("click", e => {
     }).then(res => {
         if (res.ok) {
             console.log("this worked")
+            Logged_in = true;
             location.href = "/chat"
         } else {
             alert("trumpet sound")
@@ -40,6 +41,7 @@ document.getElementById('signUpBtn').addEventListener("click", e => {
         }
     }).then(res => {
         if (res.ok) {
+            Logged_in = true;
             location.href = "/chat"
         } else {
             alert("trumpet sound")
