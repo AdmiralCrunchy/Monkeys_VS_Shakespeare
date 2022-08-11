@@ -950,17 +950,13 @@ function EndGame(){
 
 
 function gameClock(){
-    window.Game= setInterval(() =>{
-
-        attackTarget(unit,getTarget(unit));        
+    window.Game= setInterval(() =>{        
         window.Game++;
     }, 1000)
 }
 
 function endGameClock(){
-    window.endGame= setInterval(() =>{
-
-        attackTarget(unit,getTarget(unit));        
+    window.endGame= setInterval(() =>{        
         window.endGame++;
         if(window.endGame == 10)
         {
