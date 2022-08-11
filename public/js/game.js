@@ -576,12 +576,12 @@ function healTarget(origin, target, score) {
 function buffTarget(origin, target){
     if(target.name == 'Player')
     {
-        document.getElementById('info').innerHTML = `${origin.name} has buffed ${target.name}! <br> They have ${target.attack_Speed} !`
+        document.getElementById('info').innerHTML = `${origin.name} has buffed ${target.name}!  They have ${target.attack_Speed} attack speed !`
     }
     else{
         const speedBuff = -1000;
         target.attack_Speed = target.attack_Speed + speedBuff;
-        document.getElementById('info').innerHTML = `${origin.name} debuffed ${target.name} attack speed! <br> Now its ${target.attack_Speed} !`
+        document.getElementById('info').innerHTML = `${origin.name} buffed ${target.name} attack speed! Now its ${target.attack_Speed} !`
     }
     
 }
@@ -941,7 +941,7 @@ function EndGame(){
     
     document.getElementById('endScreen').innerHTML +=`<p> Total Words Typed: ${totalWordsTyped}<p>`
     document.getElementById('endScreen').innerHTML +=`<p> Average WPM: ${avgWPM}<p>`
-    document.getElementById('endScreen').innerHTML +=`<p> Game Time: ${window.Game}<p>`
+    document.getElementById('endScreen').innerHTML +=`<p> Game Time: ${window.Game} seconds<p>`
 
     endGameClock();
 }
@@ -956,7 +956,7 @@ function gameClock(){
 function endGameClock(){
     window.endGame= setInterval(() =>{        
         window.endGame++;
-        consloe.log(window.endGame)
+        console.log(window.endGame)
         if(window.endGame == 10)
         {
             fetch('/chat', {
