@@ -41,9 +41,10 @@ router.post('/', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
+    console.log("login attempt")
     try {
+        console.log(req.body)
         const userData = await User.findOne({ where: { email: req.body.email } });
-
         if (!userData) {
             res
                 .status(400)
@@ -51,7 +52,7 @@ router.post('/login', async (req, res) => {
             return;
         }
 
-        const validPassword = await userData.checkPassword(req.body.password);
+        const validPassword = bcrypt.compareSync(req.body.password, userData.password)
 
         if (!validPassword) {
             res
@@ -68,6 +69,7 @@ router.post('/login', async (req, res) => {
         });
 
     } catch (err) {
+        console.log(err)
         res.status(400).json(err);
     }
 });
