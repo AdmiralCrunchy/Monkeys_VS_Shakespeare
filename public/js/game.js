@@ -954,10 +954,10 @@ function gameClock(){
 }
 
 function endGameClock(){
-    window.endGame= setInterval(() =>{        
-        window.endGame++;
+    window.endGameTime= setInterval(() =>{        
+        window.endGameTime++;
         console.log(window.endGame)
-        if(window.endGame == 10)
+        if(window.endGame >= 10)
         {
             fetch('/chat', {
                 method: 'GET',
