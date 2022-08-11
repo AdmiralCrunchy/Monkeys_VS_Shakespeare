@@ -70,8 +70,8 @@ const Angela = new Ape('Angela', 5, 100, 100, 22000, 9, 5, 'wizard');
 
 
 const BadGuy1 = new Enemy('William Shakespeare', 100, 100, 15000, 10);
-const BadGuy2 = new Enemy('Oscar Wilde', 100, 100, 20000, 8);
-const BadGuy3 = new Enemy('Mary Shelly', 100, 100, 30000, 20);
+const BadGuy2 = new Enemy('Oscar Wilde', 100, 50, 20000, 8);
+const BadGuy3 = new Enemy('Mary Shelly', 100, 50, 30000, 20);
 
 const combatantsPool = {
     monkeys: [Jeff, Dipper, Bobo, Angela],
@@ -576,12 +576,12 @@ function healTarget(origin, target, score) {
 function buffTarget(origin, target){
     if(target.name == 'Player')
     {
-        document.getElementById('info').innerHTML = `${origin.name} has attacked ${target.name}! <br> They have ${target.attack_Speed} !`
+        document.getElementById('info').innerHTML = `${origin.name} has buffed ${target.name}! <br> They have ${target.attack_Speed} !`
     }
     else{
         const speedBuff = -1000;
         target.attack_Speed = target.attack_Speed + speedBuff;
-        document.getElementById('info').innerHTML = `${origin.name} buffed ${target.name} attack speed! <br> Now its ${target.attack_Speed} !`
+        document.getElementById('info').innerHTML = `${origin.name} debuffed ${target.name} attack speed! <br> Now its ${target.attack_Speed} !`
     }
     
 }
@@ -589,7 +589,7 @@ function buffTarget(origin, target){
 function debuffTarget(origin, target){
     const speedBuff = 20000;
     target.attack_Speed = target.attack_Speed + speedBuff;
-    document.getElementById('info').innerHTML = `${origin.name} has attacked ${target.name}! <br> They have attack much slower!`
+    document.getElementById('info').innerHTML = `${origin.name} has debuffed ${target.name}! <br> They have attack much slower!`
 }
 
 function combatMenu(){
@@ -937,8 +937,6 @@ function EndGame(){
     {
         document.getElementById('endScreen').innerHTML = `<h1>YOU WIN!</h1>` 
     }
-    console.log(totalAttempts)
-    console.log(totalWPM)
     let avgWPM = totalWPM / totalAttempts;
     
     document.getElementById('endScreen').innerHTML +=`<p> Total Words Typed: ${totalWordsTyped}<p>`
@@ -958,6 +956,7 @@ function gameClock(){
 function endGameClock(){
     window.endGame= setInterval(() =>{        
         window.endGame++;
+        consloe.log(window.endGame)
         if(window.endGame == 10)
         {
             fetch('/chat', {
