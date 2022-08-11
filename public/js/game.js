@@ -69,7 +69,7 @@ const Bobo = new Ape('Bobo', 5, 100, 100, 26000, 10, 5, 'healer');
 const Angela = new Ape('Angela', 5, 100, 100, 22000, 9, 5, 'wizard');
 
 
-const BadGuy1 = new Enemy('William Shakespeare', 50, 100, 15000, 10);
+const BadGuy1 = new Enemy('William Shakespeare', 100, 50, 15000, 10);
 const BadGuy2 = new Enemy('Oscar Wilde', 100, 50, 20000, 8);
 const BadGuy3 = new Enemy('Mary Shelly', 100, 50, 30000, 20);
 
